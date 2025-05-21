@@ -5,10 +5,7 @@
     "titleEn": "Twinkle Twinkle Little Star",
     "level": 1,
     "bpm": 100,
-    "timeSig": [
-      4,
-      4
-    ]
+    "timeSig": [4, 4]
   },
   "notes": [
     {
