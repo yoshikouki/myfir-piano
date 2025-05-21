@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "id": "twinkle_twinkle",
+    "titleJp": "きらきら星",
+    "titleEn": "Twinkle Twinkle Little Star",
+    "level": 1,
+    "bpm": 100,
+    "timeSig": [4, 4]
+  },
+  "notes": [
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ほ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "し"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "か"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "る"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "よ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "る"
+    }
+  ]
+}
