@@ -23,12 +23,12 @@
 - Playwright Component & E2E
 
 ## 作業タスク
-1. プロジェクト初期化
+1. ✅ プロジェクト初期化
    - Next.js + TypeScript + Tailwind の雛形生成
    - `src/` 以下に Package‑by‑Feature のディレクトリを作成
-2. ドメインモデル & 楽曲データ
+2. ✅ ドメインモデル & 楽曲データ
    - `song.schema.ts` を実装
-   - `twinkle_twinkle.yaml` を作成し `scripts/build-songs.ts` で JSON 生成・バリデーション
+   - `twinkle_twinkle.json` を `src/songs` で管理し `scripts/build-songs.ts` で検証
 3. 鍵盤 UI コンポーネント
    - 2 オクターブの鍵盤を実装 (SVG または div)
    - タッチイベントで `playNote` を呼び出す

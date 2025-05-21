@@ -22,13 +22,9 @@ src/
   lib/
     audio/
     i18n/
-  data/
-    songs/
-      twinkle_twinkle.yaml
-      kaeru.yaml
-    index.ts
-  generated/
-    songs/
+  songs/
+    twinkle_twinkle.json
+    kaeru.json
   scripts/
     build-songs.ts
   workers/
@@ -72,8 +68,8 @@ export type Song = z.infer<typeof SongSchema>;
 
 | 項目 | 内容 |
 |---|---|
-| 保管場所 | `src/data/songs/*.yaml` |
-| 変換フロー | `scripts/build-songs.ts` が YAML → JSON へ変換し `SongSchema` で検証 |
+| 保管場所 | `src/songs/*.json` |
+| 変換フロー | `scripts/build-songs.ts` が JSON を検証し `SongSchema` に整形 |
 | Repository | `SongRepository` 抽象 + `LocalSongRepo` 実装（将来 `CmsSongRepo` 追加） |
 
 ## AudioEngine & HitJudge
