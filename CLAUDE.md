@@ -1,7 +1,8 @@
-# Soranohon - Claude Helper
+# mifir piano
 
 ## Principles
 
+- READ `./docs` folder for project requirements and guidelines
 - Use immutable data structures
 - Separate side effects
 - Ensure type safety
@@ -26,17 +27,14 @@ pnpm run start        # Start production server
 ## Test Commands
 ```bash
 pnpm run test         # Run all tests
-pnpm run test:watch   # Run tests in watch mode
-pnpm run build:test   # Another way to run tests
 pnpm run test -- src/path/to/file.test.ts  # Run single test file
 pnpm run test -- src/path/to/file.test.ts -t "test description"  # Run specific test
 ```
 
 ## Lint & Format Commands
 ```bash
-pnpm run lint         # Check code with Biome
-pnpm run format       # Auto-format with Biome
-pnpm run format:unsafe  # Format with unsafe rules
+pnpm run format:unsafe  # Format
+pnpm run typecheck     # Typecheck
 ```
 
 ## Project Structure
@@ -75,4 +73,4 @@ pnpm run format:unsafe  # Format with unsafe rules
 - Always verify code changes at http://localhost:8888 using Playwright MCP browser
 - Use Claude's MCP browser feature to interact with the application visually
 - Manual testing can be skipped if automated tests exist
-- Run tests with `pnpm run test` or `pnpm run build:test`
+- Run tests with `pnpm run test`
