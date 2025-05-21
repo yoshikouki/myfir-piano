@@ -5,6 +5,7 @@
 - READ `./docs` folder for project requirements and guidelines
 - Use immutable data structures
 - Separate side effects
+- 依存方向は、依存逆転原則(Dependency Inversion Principle) に従う
 - Ensure type safety
 - 開発した機能ごとに git commit すること
 - `try-catch` は使用を禁止する。NEVER USE `try-catch`

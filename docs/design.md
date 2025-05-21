@@ -2,14 +2,14 @@
 
 ## 目的
 - 要件定義とPoC計画を満たす実装を速く進めつつ将来の拡張を見据える
-- CLAUDE.mdの方針に合わせてテスタブルな構造を持つ
+- テスタブルな構造を持つ
 
 ## アーキテクチャ
 - Package by Featureを採用し`src/features`に機能単位で配置
 - UI共通コンポーネントは`src/components`
 - 状態管理やビジネスロジックは各Feature内に置きUIと分離
 - WebAudioなど副作用を扱う処理は`src/lib`にまとめる
-- 依存方向は`features -> components -> lib`の一方向
+- 依存方向は、依存逆転原則(Dependency Inversion Principle) に従う
 
 ## 主要Featureの構成例
 - `keyboard`
