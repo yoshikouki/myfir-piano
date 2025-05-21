@@ -1,7 +1,7 @@
 # PoC計画
 
 ## 目的
-- 要件定義に基づき、幼児向けピアノ練習アプリの基本機能を早期に検証する。
+- [要件定義](./requirements.md) に基づき、幼児向けピアノ練習アプリの基本機能を早期に検証する。
 
 ## 実装範囲
 - 必須機能 (Must) のうち PoC で検証すべき項目
@@ -19,6 +19,7 @@
 - TypeScript
 - Tailwind CSS
 - WebAudio API
+- motion (for animation)
 - Vitest / Testing Library
 - Playwright Component & E2E
 
