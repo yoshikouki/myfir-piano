@@ -1,43 +1,137 @@
-# 設計方針
+# 設計
 
-## 目的
-- 要件定義とPoC計画を満たす実装を速く進めつつ将来の拡張を見据える
-- テスタブルな構造を持つ
+## ディレクトリ構成（Package‑by‑Feature）
 
-## アーキテクチャ
-- Package by Featureを採用し`src/features`に機能単位で配置
-- UI共通コンポーネントは`src/components`
-- 状態管理やビジネスロジックは各Feature内に置きUIと分離
-- WebAudioなど副作用を扱う処理は`src/lib`にまとめる
-- 依存方向は、依存逆転原則(Dependency Inversion Principle) に従う
+```
+src/
+  app/
+    layout.tsx
+    page.tsx
+    play/[songId]/page.tsx
+    result/[songId]/page.tsx
+  components/
+  features/
+    keyboard/
+    score/
+    player/
+    progress/
+  repositories/
+    song/
+      local.ts
+      cms.ts
+  lib/
+    audio/
+    i18n/
+  data/
+    songs/
+      twinkle_twinkle.yaml
+      kaeru.yaml
+    index.ts
+  generated/
+    songs/
+  scripts/
+    build-songs.ts
+  workers/
+    sw.ts
+```
 
-## 主要Feature
-- `keyboard`
-  - 鍵盤表示と押下アニメーション
-  - user入力の受け付け
-- `score`
-  - カタカナ譜のスクロール表示とハイライト
-  - `player`の再生位置と連動
-- `player`
-  - 音源再生管理。WebAudio API操作のみを担当
-  - `song`データを受け取り再生イベントを発火
-- `song`
-  - 楽曲データの定義と読み込み
-  - JSONからNote列を返す
+## ドメインモデル
 
-## 状態管理とデータフロー
-- 画面上位コンポーネントが各Featureを組み合わせてオーケストレーション
-- `player`が再生中のNoteを通知し`keyboard`と`score`が現在位置を更新
-- Feature間は明示的な関数注入のみで結合しContext依存を避ける
-- WebAudio API利用部分は`lib/audio`のファクトリ関数から注入
+```ts
+// song.schema.ts
+import { z } from "zod";
 
-## テスト
-- 各Feature配下でVitestによるユニットテストを実施
-- 副作用を持つ処理は関数化し引数からデータを受け取る形でテスト可能にする
-- TDDを基本としRed-Green-Refactorを小さい単位で回す
+export const Pitch = z.enum([
+  "C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3",
+  "C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4",
+  "C5",
+]);
+export type Pitch = z.infer<typeof Pitch>;
 
-## 将来拡張への備え
-- Feature単位の独立性を保つことで新しい機能を追加しやすくする
-- サービスワーカーや多言語化など拡張要件は既存Featureを変更せず新Featureとして追加
-- 複雑化を防ぐため共有ロジックは`lib`に限り、他Featureへの直接依存は禁止
+export const NoteSchema = z.object({
+  pitch: Pitch,
+  duration: z.number(),           // 拍比 (1 = 四分音符)
+  lyric: z.string().optional(),
+});
+
+export const SongSchema = z.object({
+  meta: z.object({
+    id: z.string(),
+    titleJp: z.string(),
+    titleEn: z.string().optional(),
+    level: z.number().int().min(1).max(5),
+    bpm: z.number(),
+    timeSig: z.tuple([z.number(), z.number()]),
+  }),
+  notes: z.array(NoteSchema),
+});
+export type Song = z.infer<typeof SongSchema>;
+```
+
+## 譜面データ管理
+
+| 項目 | 内容 |
+|---|---|
+| 保管場所 | `src/data/songs/*.yaml` |
+| 変換フロー | `scripts/build-songs.ts` が YAML → JSON へ変換し `SongSchema` で検証 |
+| Repository | `SongRepository` 抽象 + `LocalSongRepo` 実装（将来 `CmsSongRepo` 追加） |
+
+## AudioEngine & HitJudge
+
+```ts
+export interface AudioEngine {
+  load(fontUrl: string): Promise<void>;
+  playNote(pitch: Pitch, velocity: number): void;
+  schedule(notes: ScheduledNote[]): void;
+}
+
+export interface HitJudge {
+  judge(expectedAt: number, actualAt: number): "perfect" | "good" | "miss";
+}
+```
+
+## PlayController
+
+```ts
+export class PlayController {
+  constructor(
+    private songRepo: SongRepository,
+    private player: AudioEngine,
+    private judge: HitJudge,
+  ) {}
+
+  async load(id: string) {
+    this.song = await this.songRepo.get(id);
+  }
+
+  start() {
+    // schedule notes, subscribe input, emit progress
+  }
+}
+```
+
+## テスト戦略
+
+| レイヤ | テスト内容 | ツール |
+|---|---|---|
+| ユニット | YAML→JSON 変換／HitJudge 判定 | Vitest |
+| 統合 | PlayController → AudioEngine 呼び出し順 | Vitest |
+| コンポーネント | 鍵盤 UI 反映 | Playwright Component |
+| E2E | 実機タッチ／遅延計測 (将来) | Playwright + BrowserStack |
+
+## Service Worker キャッシュ戦略
+
+| リソース | ポリシー |
+|---|---|
+| 譜面 JSON | CacheFirst (24h) |
+| 音源 | CacheFirst (30d) |
+| App Shell | StaleWhileRevalidate |
+
+## 拡張フック
+
+| 将来機能 | 仕込み箇所 |
+|---|---|
+| MIDI キーボード | `MidiOutEngine` |
+| CMS 楽曲配信 | `CmsSongRepo` |
+| AR Piano | `<VisionProvider>` コンテキスト |
 
