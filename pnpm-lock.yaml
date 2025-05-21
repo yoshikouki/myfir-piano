@@ -32,6 +32,9 @@ importers:
       tailwind-merge:
         specifier: ^3.3.0
         version: 3.3.0
+      zod:
+        specifier: ^3.25.16
+        version: 3.25.16
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -707,6 +710,9 @@ packages:
     resolution: {integrity: sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==}
     engines: {node: '>=18'}
 
+  zod@3.25.16:
+    resolution: {integrity: sha512-3lOav31WLa1MstEvkM0QlcsFjKmJ2TI9IFYlIVpLE3upguhaeiRfPOzqqtisS/Hetk4ri2fLLC3OtW15lS5jxQ==}
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -1230,3 +1236,5 @@ snapshots:
   undici-types@6.19.8: {}
 
   yallist@5.0.0: {}
+
+  zod@3.25.16: {}
