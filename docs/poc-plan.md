@@ -36,10 +36,10 @@
 4. 譜面スクロール UI
    - カタカナ譜を左→右へスクロール表示
    - 現在ノートをハイライト
-5. AudioEngine PoC & 音源形式比較  
-   - **方式A: SoundFont** を AudioWorklet + WASM で実装  
-   - **方式B: 分割サンプル (OGG)** を AudioBuffer 直鳴らしで実装  
-   - KPI を計測: 初回 DL 容量・連打時レイテンシ・CPU 使用率  
+5. AudioEngine PoC & 音源形式比較
+   - **方式B: 分割サンプル (OGG)** を先行して AudioBuffer 直鳴らしで実装
+   - **方式A: SoundFont** を AudioWorklet + WASM で比較用に実装
+   - KPI を計測: 初回 DL 容量・連打時レイテンシ・CPU 使用率
    - 優位な方式を選定し以降の実装へフィードバック
 6. PlayController PoC
    - Lv.1 / Lv.2 の進行ロジック (正しい鍵盤 or 自動テンポ)
@@ -49,3 +49,12 @@
    - 統合: PlayController→AudioEngine 呼び出し順
    - Component: Keyboard, ScrollScore (Playwright)
    - 手動 E2E: iPhone / Android 実機タップ, レイテンシ計測
+8. ユーザーテストとUX調整
+  - 保護者や幼児に操作してもらい使いやすさを検証
+  - フィードバックを基にキーボードサイズやハイライトタイミングを調整
+9. KPI分析 & 音源評価
+  - 収集したレイテンシや容量を比較し基準を満たす方式を選定
+  - 改善点を洗い出し次フェーズへ反映
+10. PoCまとめと次フェーズ計画
+  - 成果と課題をドキュメントに整理しチーム共有
+  - 本実装へ向けたロードマップを決定
