@@ -10,6 +10,7 @@
   - 次鍵盤ハイライトモード
   - 単音メロディ再生（Lv.1 / Lv.2 の進行ロジック）
   - AudioEngine 経由のピアノ音源再生（遅延計測を含む）
+  - ピアノ音源形式 (SoundFont／分割サンプル) の比較と KPI 収集
   - オフライン時の譜面・音源キャッシュ (Service Worker)
 - プリセット楽曲: **きらきら星** 1 曲のみ (YAML 定義 → JSON 変換)
 
@@ -34,9 +35,11 @@
 4. 譜面スクロール UI
    - カタカナ譜を左→右へスクロール表示
    - 現在ノートをハイライト
-5. AudioEngine PoC
-   - SoundFont を読み込み `playNote`, `schedule` を実装
-   - モバイル実機でレイテンシ (<50 ms) を計測
+5. AudioEngine PoC & 音源形式比較  
+   - **方式A: SoundFont** を AudioWorklet + WASM で実装  
+   - **方式B: 分割サンプル (OGG)** を AudioBuffer 直鳴らしで実装  
+   - KPI を計測: 初回 DL 容量・連打時レイテンシ・CPU 使用率  
+   - 優位な方式を選定し以降の実装へフィードバック
 6. PlayController PoC
    - Lv.1 / Lv.2 の進行ロジック (正しい鍵盤 or 自動テンポ)
    - 次鍵盤ハイライト・譜面ハイライトと同期
