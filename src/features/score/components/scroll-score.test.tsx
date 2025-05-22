@@ -9,7 +9,7 @@ const song = rawSong as Song;
 describe("ScrollScore", () => {
   it("highlights current note", () => {
     render(<ScrollScore song={song} currentIndex={0} />);
-    const first = screen.getAllByText("き")[0];
+    const first = screen.getAllByText("ド")[0];
     expect(first.className).toContain("bg-red-500");
   });
 });

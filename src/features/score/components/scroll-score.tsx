@@ -1,9 +1,15 @@
+import type { Pitch } from "@/features/keyboard/pitches";
+import { pitchLabels } from "@/features/keyboard/pitches";
 import type { Song } from "@/lib/song.schema";
 
 export type ScrollScoreProps = {
   song: Song;
   currentIndex?: number;
 };
+
+function pitchToKatakana(pitch: Pitch): string {
+  return pitchLabels[pitch];
+}
 
 export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
   return (
@@ -13,7 +19,7 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
           key={`${i}-${n.pitch}`}
           className={i === currentIndex ? "bg-red-500 text-white" : ""}
         >
-          {n.lyric ?? "-"}
+          {pitchToKatakana(n.pitch as Pitch)}
         </span>
       ))}
     </div>

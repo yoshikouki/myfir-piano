@@ -10,7 +10,7 @@ import twinkleTwinkleSong from "@/songs/twinkle_twinkle.json";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [_currentIndex, setCurrentIndex] = useState(0);
   const [playController, setPlayController] = useState<PlayController | null>(null);
   const [song] = useState<Song>(twinkleTwinkleSong as Song);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -43,11 +43,14 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <header className="border-gray-200 border-b bg-white px-4 py-3 shadow-sm">
+        <h1 className="text-center font-bold text-xl md:text-2xl">{song.meta.titleJp}</h1>
+      </header>
+
       <div className="flex flex-1 flex-col p-4 pb-32">
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-4xl">
             <div className="mb-8 text-center">
-              <h1 className="mb-4 font-bold text-2xl md:text-3xl">{song.meta.titleJp}</h1>
               <div className="rounded-lg bg-gray-100 p-2 md:p-4">
                 <ScrollScore song={song} />
               </div>
@@ -64,11 +67,7 @@ export default function Home() {
                     もう一度
                   </button>
                 </div>
-              ) : (
-                <div className="text-gray-600 text-sm">
-                  進行: {currentIndex + 1} / {song.notes.length}
-                </div>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
