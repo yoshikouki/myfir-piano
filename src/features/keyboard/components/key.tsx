@@ -12,8 +12,8 @@ export function Key({ pitch, onPress }: KeyProps) {
       type="button"
       data-pitch={pitch}
       className={cn(
-        "h-24 w-8 border border-black active:translate-y-0.5",
-        pitch.includes("#") && "-mx-2 z-10 h-16 w-6 bg-black text-white",
+        "h-24 w-8 border-x border-black active:translate-y-0.5",
+        pitch.includes("#") && "-mx-2 z-10 h-16 w-6 bg-black text-white border border-black",
       )}
       onPointerDown={() => onPress?.(pitch)}
     >
