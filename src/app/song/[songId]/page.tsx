@@ -7,7 +7,7 @@ import { ScrollScore } from "@/features/score/components/scroll-score";
 import { type SongId, loadSong } from "@/features/songs/songs";
 import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
 import type { Song } from "@/songs/song.schema";
-import { ArrowLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -92,7 +92,7 @@ export default function SongPage() {
       <header className="border-gray-200 border-b bg-white px-4 py-3 shadow-sm">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1 text-blue-500 hover:text-blue-600">
-            <ArrowLeft size={16} />
+            <ChevronLeft size={16} />
             きょくリスト
           </Link>
           <div className="flex items-center gap-2">

@@ -35,9 +35,9 @@ export function Keyboard({ highlightedPitch, onPress }: KeyboardProps) {
         return (
           <div
             key={p}
-            className="absolute h-full pointer-events-none"
+            className="pointer-events-none absolute h-full"
             style={{
-              left: `${((whiteKeyIndex + 0.75) / whiteKeys.length) * 100}%`,
+              left: `${((whiteKeyIndex + 0.73) / whiteKeys.length) * 100}%`,
               width: `${(0.6 / whiteKeys.length) * 100}%`,
             }}
           >
