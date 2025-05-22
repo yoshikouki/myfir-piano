@@ -1,14 +1,15 @@
 import { cn } from "@/lib/utils";
 import { type VariantProps, cva } from "class-variance-authority";
+import { motion } from "motion/react";
 import { type Pitch, isBlackKey, pitchLabels } from "../pitches";
 
 const keyVariants = cva(
-  "touch-manipulation select-none transition-colors active:translate-y-0.5 pointer-events-auto flex items-end justify-center pb-4",
+  "touch-manipulation select-none active:translate-y-0.5 pointer-events-auto flex items-end justify-center pb-4",
   {
     variants: {
       keyType: {
-        white: "h-full flex-1 border-black border-r text-sm md:text-base relative",
-        black: "h-2/5 w-full border-r-0 text-white",
+        white: "h-full flex-1 border-l text-sm md:text-base relative",
+        black: "h-1/2 w-full text-white rounded-b-md",
       },
       highlighted: {
         true: "",
@@ -53,14 +54,28 @@ export type KeyProps = {
 export function Key({ pitch, highlighted = false, onPress }: KeyProps) {
   const keyType = isBlackKey(pitch) ? "black" : "white";
 
+  const getBackgroundColor = () => {
+    if (keyType === "white") {
+      return highlighted ? "#fecaca" : "#ffffff";
+    }
+    return highlighted ? "#dc2626" : "#000000";
+  };
+
   return (
-    <button
+    <motion.button
       type="button"
       data-pitch={pitch}
-      className={cn(keyVariants({ keyType, highlighted }))}
+      className={cn(keyVariants({ keyType, highlighted: false }))}
       onPointerDown={() => onPress?.(pitch)}
+      animate={{
+        backgroundColor: getBackgroundColor(),
+      }}
+      transition={{
+        duration: 0.2,
+        delay: 0.2,
+      }}
     >
       {keyType === "white" && pitchLabels[pitch]}
-    </button>
+    </motion.button>
   );
 }

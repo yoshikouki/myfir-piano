@@ -52,6 +52,7 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
           type: "spring",
           stiffness: 300,
           damping: 30,
+          delay: 0.2,
         }}
       >
         {song.notes.map((n, i) => (
@@ -60,14 +61,14 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
             className="relative inline-block min-w-[60px] text-center"
           >
             <motion.span
-              className={`relative inline-block px-2 ${
-                i === currentNoteIndex ? "text-yellow-300" : ""
-              }`}
+              className="relative inline-block px-2"
               animate={{
                 scale: i === currentNoteIndex ? 1.2 : 1,
+                color: i === currentNoteIndex ? "#fde047" : "#000000",
               }}
               transition={{
                 duration: 0.2,
+                delay: 0.2,
               }}
             >
               {pitchToKatakana(n.pitch as Pitch)}
