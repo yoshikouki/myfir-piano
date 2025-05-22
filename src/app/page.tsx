@@ -22,8 +22,9 @@ export default function Home() {
     setPlayController(controller);
   }, [song]);
 
-  const handleKeyPress = (pitch: Pitch) => {
+  const handleKeyPress = async (pitch: Pitch) => {
     if (!playController) return;
+    await playController.ensureAudioEngineLoaded();
     const oldIndex = playController.index;
     playController.press(pitch);
     const newIndex = playController.index;

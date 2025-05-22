@@ -22,6 +22,10 @@ export class PlayController {
     }
   }
 
+  async ensureAudioEngineLoaded() {
+    await this.engine.load();
+  }
+
   getCurrentNote() {
     if (!this.song || this.index >= this.song.notes.length) return undefined;
     return this.song.notes[this.index];
