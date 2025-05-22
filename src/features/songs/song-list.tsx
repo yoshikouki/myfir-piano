@@ -27,14 +27,14 @@ export function SongList() {
   if (loading) {
     return (
       <div className="flex justify-center py-8">
-        <div className="text-gray-500">楽曲を読み込み中...</div>
+        <div className="text-gray-500">きょくを よみこみちゅう...</div>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-2xl p-4">
-      <h1 className="mb-6 text-center font-bold text-2xl">楽曲リスト</h1>
+      <h1 className="mb-6 text-center font-bold text-2xl">きょくリスト</h1>
       <div className="space-y-3">
         {songs.map((song) => (
           <Link
