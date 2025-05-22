@@ -15,12 +15,13 @@ export function Key({ pitch, highlighted, onPress }: KeyProps) {
       type="button"
       data-pitch={pitch}
       className={cn(
-        "h-32 w-16 touch-manipulation select-none border-black border-r transition-colors active:translate-y-0.5 md:h-40 md:w-20",
-        isBlackKey && "-mx-4 md:-mx-5 z-10 h-20 w-10 border-r-0 text-white md:h-24 md:w-12",
+        "touch-manipulation select-none transition-colors active:translate-y-0.5",
+        isBlackKey && "h-20 w-full border-r-0 text-white md:h-24",
         isBlackKey && !highlighted && "bg-black",
         isBlackKey && highlighted && "bg-red-600",
-        !isBlackKey && !highlighted && "bg-white text-sm md:text-base",
-        !isBlackKey && highlighted && "bg-red-200 text-sm md:text-base",
+        !isBlackKey && "h-32 flex-1 border-black border-r text-sm md:h-40 md:text-base",
+        !isBlackKey && !highlighted && "bg-white",
+        !isBlackKey && highlighted && "bg-red-200",
       )}
       onPointerDown={() => onPress?.(pitch)}
     >

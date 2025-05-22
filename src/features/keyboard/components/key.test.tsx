@@ -29,10 +29,10 @@ describe("Key component", () => {
   it("applies highlighted state correctly", () => {
     const testPitch = PITCHES[0];
     const { rerender } = render(<Key pitch={testPitch} highlighted={false} />);
-    
+
     rerender(<Key pitch={testPitch} highlighted={true} />);
     const keyElement = screen.getByRole("button");
-    
+
     expect(keyElement).toHaveAttribute("data-pitch", testPitch);
   });
 

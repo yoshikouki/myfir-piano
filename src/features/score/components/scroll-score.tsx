@@ -29,7 +29,7 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
         <motion.div
           layoutId="highlight"
           data-testid="highlight"
-          className="absolute top-0 left-0 z-10 h-full w-[60px] rounded bg-red-500"
+          className="absolute top-0 left-0 h-full w-[60px] rounded bg-red-500"
           style={{
             left: `${centerPosition * (60 + 8)}px`,
           }}
@@ -60,7 +60,7 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
             className="relative inline-block min-w-[60px] text-center"
           >
             <motion.span
-              className={`relative z-20 inline-block px-2 ${
+              className={`relative inline-block px-2 ${
                 i === currentNoteIndex ? "text-yellow-300" : ""
               }`}
               animate={{

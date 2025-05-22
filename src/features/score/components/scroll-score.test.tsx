@@ -20,7 +20,7 @@ describe("ScrollScore", () => {
   it("renders all notes from song", () => {
     render(<ScrollScore song={song} />);
     expect(screen.getAllByText("ド")).toHaveLength(
-      song.notes.filter(note => note.pitch === "C4").length
+      song.notes.filter((note) => note.pitch === "C4").length,
     );
   });
 });
