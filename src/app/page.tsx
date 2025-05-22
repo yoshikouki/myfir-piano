@@ -50,24 +50,24 @@ export default function Home() {
       <div className="flex flex-1 flex-col p-4 pb-32">
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-4xl">
-            <div className="mb-8 text-center">
+            <div className="space-y-8 text-center">
               <div className="rounded-lg bg-gray-100 p-2 md:p-4">
                 <ScrollScore song={song} currentIndex={currentIndex} />
               </div>
-            </div>
-            <div className="text-center">
-              {isCompleted ? (
-                <div className="space-y-4">
-                  <div className="font-bold text-green-600 text-xl md:text-2xl">🎉 完成！</div>
-                  <button
-                    type="button"
-                    onClick={handleReset}
-                    className="rounded-lg bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
-                  >
-                    もう一度
-                  </button>
-                </div>
-              ) : null}
+              <div>
+                {isCompleted ? (
+                  <div className="space-y-4">
+                    <div className="font-bold text-green-600 text-xl md:text-2xl">🎉 完成！</div>
+                    <button
+                      type="button"
+                      onClick={handleReset}
+                      className="rounded-lg bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
+                    >
+                      もう一度
+                    </button>
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
