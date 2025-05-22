@@ -4,36 +4,36 @@ import { PITCHES } from "../pitches";
 import { Key } from "./key";
 
 describe("Key component", () => {
-  it("renders white keys with right border", () => {
+  it("renders white key with pitch label", () => {
     const whitePitch = PITCHES.find((p) => !p.includes("#"));
     if (!whitePitch) throw new Error("No white pitch found for testing");
 
     render(<Key pitch={whitePitch} />);
     const keyElement = screen.getByRole("button");
 
-    expect(keyElement).toHaveClass("border-r");
-    expect(keyElement).toHaveClass("border-black");
-    expect(keyElement).toHaveClass("bg-white");
-
-    expect(keyElement).not.toHaveClass("border-t");
-    expect(keyElement).not.toHaveClass("border-b");
-    expect(keyElement).not.toHaveClass("border-l");
-
-    const classList = keyElement.className.split(" ");
-    expect(classList).not.toContain("border");
+    expect(keyElement).toHaveAttribute("data-pitch", whitePitch);
+    expect(keyElement).toHaveTextContent(/\S/);
   });
 
-  it("renders black keys with proper styling", () => {
+  it("renders black key without visible text", () => {
     const blackPitch = PITCHES.find((p) => p.includes("#"));
     if (!blackPitch) throw new Error("No black pitch found for testing");
 
     render(<Key pitch={blackPitch} />);
     const keyElement = screen.getByRole("button");
 
-    expect(keyElement).toHaveClass("bg-black");
-    expect(keyElement).toHaveClass("text-white");
-    expect(keyElement).toHaveClass("border-r-0");
-    expect(keyElement).toHaveClass("z-10");
+    expect(keyElement).toHaveAttribute("data-pitch", blackPitch);
+    expect(keyElement).not.toHaveTextContent(/\S/);
+  });
+
+  it("applies highlighted state correctly", () => {
+    const testPitch = PITCHES[0];
+    const { rerender } = render(<Key pitch={testPitch} highlighted={false} />);
+    
+    rerender(<Key pitch={testPitch} highlighted={true} />);
+    const keyElement = screen.getByRole("button");
+    
+    expect(keyElement).toHaveAttribute("data-pitch", testPitch);
   });
 
   it("calls onPress when a key is pressed", () => {

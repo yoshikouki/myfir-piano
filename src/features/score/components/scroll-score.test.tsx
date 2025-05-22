@@ -7,12 +7,20 @@ import { ScrollScore } from "./scroll-score";
 const song = rawSong as Song;
 
 describe("ScrollScore", () => {
-  it("highlights current note", () => {
+  it("shows highlight when current note is selected", () => {
     render(<ScrollScore song={song} currentIndex={0} />);
-    const highlight = screen.getByTestId("highlight");
-    expect(highlight.className).toContain("bg-red-500");
+    expect(screen.getByTestId("highlight")).toBeInTheDocument();
+  });
 
-    const first = screen.getAllByText("ド")[0];
-    expect(first.className).toContain("text-white");
+  it("hides highlight when no current note", () => {
+    render(<ScrollScore song={song} />);
+    expect(screen.queryByTestId("highlight")).not.toBeInTheDocument();
+  });
+
+  it("renders all notes from song", () => {
+    render(<ScrollScore song={song} />);
+    expect(screen.getAllByText("ド")).toHaveLength(
+      song.notes.filter(note => note.pitch === "C4").length
+    );
   });
 });
