@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "id": "ookina_kuri_no_ki",
+    "titleJp": "大きな栗の木の下で",
+    "titleEn": "Under the Big Chestnut Tree",
+    "bpm": 100,
+    "timeSig": [4, 4]
+  },
+  "notes": [
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "オー"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "キ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ナ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ク"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "リ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ノ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "キー"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ノ"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "シ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "タ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "デ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 4,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ア"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ナ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "タ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ト"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ワ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "タ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "シー"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ナ"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "カ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ヨ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "ク"
+    },
+    {
+      "pitch": "C4",
+      "duration": 4,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ア"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ソ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ビ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "マ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ショ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ウ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ア"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ソ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ビ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "マ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ショ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ウ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "オー"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "キ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ナ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ク"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "リ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ノ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "キー"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ノ"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "シ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "タ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "デ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 4,
+      "lyric": "ー"
+    }
+  ]
+}

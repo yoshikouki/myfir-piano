@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "id": "happy_birthday",
+    "titleJp": "ハッピーバースデー",
+    "titleEn": "Happy Birthday to You",
+    "bpm": 80,
+    "timeSig": [3, 4]
+  },
+  "notes": [
+    {
+      "pitch": "C4",
+      "duration": 0.5,
+      "lyric": "ハ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 0.5,
+      "lyric": "ッ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 2,
+      "lyric": "ピー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "バー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 2,
+      "lyric": "スー"
+    },
+    {
+      "pitch": "E4",
+      "duration": 3,
+      "lyric": "デー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 0.5,
+      "lyric": "ハ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 0.5,
+      "lyric": "ッ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 2,
+      "lyric": "ピー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "バー"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "スー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 3,
+      "lyric": "デー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 0.5,
+      "lyric": "ハ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 0.5,
+      "lyric": "ッ"
+    },
+    {
+      "pitch": "C5",
+      "duration": 2,
+      "lyric": "ピー"
+    },
+    {
+      "pitch": "A4",
+      "duration": 2,
+      "lyric": "バー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 2,
+      "lyric": "スー"
+    },
+    {
+      "pitch": "E4",
+      "duration": 2,
+      "lyric": "デー"
+    },
+    {
+      "pitch": "D4",
+      "duration": 3,
+      "lyric": "トゥー"
+    },
+    {
+      "pitch": "Bb4",
+      "duration": 0.5,
+      "lyric": "ユ"
+    },
+    {
+      "pitch": "Bb4",
+      "duration": 0.5,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "A4",
+      "duration": 2,
+      "lyric": "ハー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 2,
+      "lyric": "ピー"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "バー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 3,
+      "lyric": "スー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "デー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 2,
+      "lyric": "トゥー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 3,
+      "lyric": "ユー"
+    }
+  ]
+}

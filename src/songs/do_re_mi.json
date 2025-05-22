@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "id": "do_re_mi",
+    "titleJp": "ドレミの歌",
+    "titleEn": "Do-Re-Mi",
+    "bpm": 90,
+    "timeSig": [4, 4]
+  },
+  "notes": [
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ド"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "レ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ミ"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "フ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ソ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ラ"
+    },
+    {
+      "pitch": "B4",
+      "duration": 1,
+      "lyric": "シ"
+    },
+    {
+      "pitch": "C5",
+      "duration": 1,
+      "lyric": "ド"
+    },
+    {
+      "pitch": "C5",
+      "duration": 2,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ド"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "は"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "み"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "ん"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "な"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ド"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "レ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "は"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "か"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "り"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "レ"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ミ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "は"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "み"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "ん"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "な"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ミ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ー"
+    }
+  ]
+}
