@@ -57,7 +57,9 @@ export default function Home() {
               <div>
                 {isCompleted ? (
                   <div className="space-y-4">
-                    <div className="font-bold text-green-600 text-xl md:text-2xl">🎉 完成！</div>
+                    <div className="font-bold text-green-600 text-xl md:text-2xl">
+                      🎉 完成！
+                    </div>
                     <button
                       type="button"
                       onClick={handleReset}
