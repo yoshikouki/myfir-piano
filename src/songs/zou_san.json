@@ -4,7 +4,7 @@
     "titleJp": "ぞうさん",
     "titleEn": "Elephant",
     "bpm": 90,
-    "timeSig": "3/4"
+    "timeSig": [3, 4]
   },
   "notes": [
     { "pitch": "F4", "duration": 1, "lyric": "ゾ" },
@@ -32,6 +32,32 @@
     { "pitch": "A4", "duration": 1, "lyric": "サ" },
     { "pitch": "D4", "duration": 1, "lyric": "ン" },
     { "pitch": "C4", "duration": 1, "lyric": "ノ" },
-    { "pitch": "F4", "duration": 3, "lyric": "ネ" }
+    { "pitch": "F4", "duration": 3, "lyric": "ネ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ソ" },
+    { "pitch": "D4", "duration": 1, "lyric": "ウ" },
+    { "pitch": "C4", "duration": 1, "lyric": "ヨ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ゾ" },
+    { "pitch": "D4", "duration": 1, "lyric": "ウ" },
+    { "pitch": "C4", "duration": 1, "lyric": "サ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ン" },
+    { "pitch": "G4", "duration": 1, "lyric": "ソ" },
+    { "pitch": "A4", "duration": 1, "lyric": "ウ" },
+    { "pitch": "C5", "duration": 1, "lyric": "ヨ" },
+    { "pitch": "A4", "duration": 1, "lyric": "オ" },
+    { "pitch": "A4", "duration": 1, "lyric": "カ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ア" },
+    { "pitch": "F4", "duration": 1, "lyric": "サ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ン" },
+    { "pitch": "C5", "duration": 1, "lyric": "ト" },
+    { "pitch": "A4", "duration": 1, "lyric": "オ" },
+    { "pitch": "D5", "duration": 1, "lyric": "ナ" },
+    { "pitch": "C5", "duration": 1, "lyric": "ジ" },
+    { "pitch": "A4", "duration": 1, "lyric": "デ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ス" },
+    { "pitch": "G4", "duration": 1, "lyric": "ノ" },
+    { "pitch": "A4", "duration": 1, "lyric": "ネ" },
+    { "pitch": "D4", "duration": 1, "lyric": "ダ" },
+    { "pitch": "C4", "duration": 1, "lyric": "カ" },
+    { "pitch": "F4", "duration": 3, "lyric": "ラ" }
   ]
 }

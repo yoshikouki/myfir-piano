@@ -1,6 +1,6 @@
 import type { Pitch } from "@/features/keyboard/pitches";
 import { pitchLabels } from "@/features/keyboard/pitches";
-import type { Song } from "@/lib/song.schema";
+import type { Song } from "@/songs/song.schema";
 import { motion } from "motion/react";
 
 export type ScrollScoreProps = {

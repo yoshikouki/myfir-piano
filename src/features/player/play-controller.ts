@@ -1,6 +1,6 @@
 import type { Pitch } from "@/features/keyboard/pitches";
 import type { AudioEngine } from "@/lib/audio/audio-engine";
-import type { Song } from "@/lib/song.schema";
+import type { Song } from "@/songs/song.schema";
 
 export class PlayController {
   constructor(private engine: AudioEngine) {}

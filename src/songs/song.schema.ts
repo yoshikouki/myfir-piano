@@ -40,7 +40,6 @@ export const SongSchema = z.object({
     id: z.string(),
     titleJp: z.string(),
     titleEn: z.string().optional(),
-    level: z.number().int().min(1).max(5),
     bpm: z.number(),
     timeSig: z.tuple([z.number(), z.number()]),
   }),

@@ -4,7 +4,7 @@
     "titleJp": "犬のおまわりさん",
     "titleEn": "Dog Policeman",
     "bpm": 110,
-    "timeSig": "4/4"
+    "timeSig": [4, 4]
   },
   "notes": [
     { "pitch": "G4", "duration": 1, "lyric": "マ" },
@@ -34,6 +34,36 @@
     { "pitch": "F4", "duration": 1, "lyric": "イ" },
     { "pitch": "E4", "duration": 1, "lyric": "テ" },
     { "pitch": "D4", "duration": 1, "lyric": "ミ" },
-    { "pitch": "C4", "duration": 4, "lyric": "タ" }
+    { "pitch": "C4", "duration": 4, "lyric": "タ" },
+    { "pitch": "C4", "duration": 1, "lyric": "ニ" },
+    { "pitch": "D4", "duration": 1, "lyric": "ャ" },
+    { "pitch": "E4", "duration": 1, "lyric": "ン" },
+    { "pitch": "F4", "duration": 1, "lyric": "ニ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ャ" },
+    { "pitch": "A4", "duration": 1, "lyric": "ン" },
+    { "pitch": "G4", "duration": 1, "lyric": "ト" },
+    { "pitch": "F4", "duration": 1, "lyric": "イ" },
+    { "pitch": "E4", "duration": 1, "lyric": "ッ" },
+    { "pitch": "D4", "duration": 1, "lyric": "テ" },
+    { "pitch": "C4", "duration": 1, "lyric": "ク" },
+    { "pitch": "D4", "duration": 1, "lyric": "レ" },
+    { "pitch": "E4", "duration": 1, "lyric": "タ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ヨ" },
+    { "pitch": "G4", "duration": 2, "lyric": "ー" },
+    { "pitch": "A4", "duration": 2, "lyric": "ー" },
+    { "pitch": "G4", "duration": 1, "lyric": "ワ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ン" },
+    { "pitch": "G4", "duration": 1, "lyric": "ワ" },
+    { "pitch": "A4", "duration": 1, "lyric": "ン" },
+    { "pitch": "F4", "duration": 1, "lyric": "ワ" },
+    { "pitch": "E4", "duration": 1, "lyric": "ン" },
+    { "pitch": "D4", "duration": 1, "lyric": "ワ" },
+    { "pitch": "C4", "duration": 1, "lyric": "ン" },
+    { "pitch": "D4", "duration": 1, "lyric": "ア" },
+    { "pitch": "G4", "duration": 1, "lyric": "リ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ガ" },
+    { "pitch": "E4", "duration": 1, "lyric": "ト" },
+    { "pitch": "D4", "duration": 1, "lyric": "ウ" },
+    { "pitch": "C4", "duration": 4, "lyric": "ー" }
   ]
 }

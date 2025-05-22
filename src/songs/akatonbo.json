@@ -4,7 +4,7 @@
     "titleJp": "赤とんぼ",
     "titleEn": "Red Dragonfly",
     "bpm": 85,
-    "timeSig": "4/4"
+    "timeSig": [4, 4]
   },
   "notes": [
     { "pitch": "C4", "duration": 1, "lyric": "ユ" },

@@ -1,4 +1,4 @@
-import type { Song } from "@/lib/song.schema";
+import type { Song } from "@/songs/song.schema";
 import rawSong from "@/songs/twinkle_twinkle.json";
 import { describe, expect, it, vi } from "vitest";
 import { PlayController } from "./play-controller";

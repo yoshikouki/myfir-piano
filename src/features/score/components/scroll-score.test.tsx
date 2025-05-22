@@ -1,4 +1,4 @@
-import type { Song } from "@/lib/song.schema";
+import type { Song } from "@/songs/song.schema";
 import rawSong from "@/songs/twinkle_twinkle.json";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
