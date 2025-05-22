@@ -26,7 +26,6 @@ src/
     twinkle_twinkle.json
     kaeru.json
   scripts/
-    build-songs.ts
   workers/
     sw.ts
 ```
@@ -69,7 +68,7 @@ export type Song = z.infer<typeof SongSchema>;
 | 項目 | 内容 |
 |---|---|
 | 保管場所 | `src/songs/*.json` |
-| 変換フロー | `scripts/build-songs.ts` が JSON を検証し `SongSchema` に整形 |
+| 変換フロー | `SongSchema` で型安全性を保証 |
 | Repository | `SongRepository` 抽象 + `LocalSongRepo` 実装（将来 `CmsSongRepo` 追加） |
 
 ## AudioEngine & HitJudge

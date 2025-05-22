@@ -10,7 +10,7 @@ import twinkleTwinkleSong from "@/songs/twinkle_twinkle.json";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [_currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [playController, setPlayController] = useState<PlayController | null>(null);
   const [song] = useState<Song>(twinkleTwinkleSong as Song);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -52,7 +52,7 @@ export default function Home() {
           <div className="w-full max-w-4xl">
             <div className="mb-8 text-center">
               <div className="rounded-lg bg-gray-100 p-2 md:p-4">
-                <ScrollScore song={song} />
+                <ScrollScore song={song} currentIndex={currentIndex} />
               </div>
             </div>
             <div className="text-center">

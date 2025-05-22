@@ -29,7 +29,7 @@
    - `src/` 以下に Package‑by‑Feature のディレクトリを作成
 2. ✅ ドメインモデル & 楽曲データ
    - `song.schema.ts` を実装
-   - `twinkle_twinkle.json` を `src/songs` で管理し `scripts/build-songs.ts` で検証
+   - `twinkle_twinkle.json` を `src/songs` で管理
 3. ✅ 鍵盤 UI コンポーネント
    - 2 オクターブの鍵盤を実装 (div ベース)
    - タッチイベントで `playNote` を呼び出す
