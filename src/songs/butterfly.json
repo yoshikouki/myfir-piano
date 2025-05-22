@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "id": "butterfly",
+    "titleJp": "ちょうちょう",
+    "titleEn": "Butterfly",
+    "bpm": 90,
+    "timeSig": [3, 4]
+  },
+  "notes": [
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ち"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "ょ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "う"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ち"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "ょ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "う"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "な"
+    },
+    {
+      "pitch": "E4",
+      "duration": 2,
+      "lyric": "の"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "は"
+    },
+    {
+      "pitch": "E4",
+      "duration": 2,
+      "lyric": "な"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "に"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "と"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "ま"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "れ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "さ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "さ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "い"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "て"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "さ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "い"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "て"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ど"
+    },
+    {
+      "pitch": "E4",
+      "duration": 2,
+      "lyric": "こ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "へ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 2,
+      "lyric": "い"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "く"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "か"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "な"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "し"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "い"
+    }
+  ]
+}

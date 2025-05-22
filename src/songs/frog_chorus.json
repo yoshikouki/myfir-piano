@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "id": "frog_chorus",
+    "titleJp": "かえるの合唱",
+    "titleEn": "Frog Chorus",
+    "bpm": 100,
+    "timeSig": [4, 4]
+  },
+  "notes": [
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "か"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "え"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "る"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "う"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "た"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "が"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "こ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "え"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "る"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "こ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "え"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "る"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "か"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "え"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "る"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "う"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "た"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "が"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "け"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ろ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "け"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ろ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "け"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ろ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "け"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ろ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "く"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "わ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "っ"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "く"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "わ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "っ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "く"
+    }
+  ]
+}

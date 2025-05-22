@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "id": "mary_had_a_little_lamb",
+    "titleJp": "メリーさんのひつじ",
+    "titleEn": "Mary Had a Little Lamb",
+    "bpm": 100,
+    "timeSig": [4, 4]
+  },
+  "notes": [
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "メ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "リ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "さ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "ん"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "B3",
+      "duration": 2,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "つ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "じ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "つ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "じ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "つ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "じ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "メ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "リ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "さ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "ん"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "B3",
+      "duration": 2,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "つ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "じ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ど"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "こ"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "で"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "も"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "つ"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "い"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "て"
+    },
+    {
+      "pitch": "B3",
+      "duration": 1,
+      "lyric": "く"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "る"
+    }
+  ]
+}
