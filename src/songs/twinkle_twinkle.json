@@ -77,6 +77,146 @@
       "pitch": "C4",
       "duration": 2,
       "lyric": "る"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "そ"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "の"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "う"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "え"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "に"
+    },
+    {
+      "pitch": "D4",
+      "duration": 2,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "め"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "く"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "か"
+    },
+    {
+      "pitch": "D4",
+      "duration": 2,
+      "lyric": "る"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "C4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "G4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "ほ"
+    },
+    {
+      "pitch": "A4",
+      "duration": 1,
+      "lyric": "し"
+    },
+    {
+      "pitch": "G4",
+      "duration": 2,
+      "lyric": "ー"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "き"
+    },
+    {
+      "pitch": "F4",
+      "duration": 1,
+      "lyric": "ら"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "ひ"
+    },
+    {
+      "pitch": "E4",
+      "duration": 1,
+      "lyric": "か"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "る"
+    },
+    {
+      "pitch": "D4",
+      "duration": 1,
+      "lyric": "よ"
+    },
+    {
+      "pitch": "C4",
+      "duration": 2,
+      "lyric": "る"
     }
   ]
 }
