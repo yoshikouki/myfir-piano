@@ -11,7 +11,7 @@ describe("ScrollScore", () => {
     render(<ScrollScore song={song} currentIndex={0} />);
     const highlight = screen.getByTestId("highlight");
     expect(highlight.className).toContain("bg-red-500");
-    
+
     const first = screen.getAllByText("ド")[0];
     expect(first.className).toContain("text-white");
   });

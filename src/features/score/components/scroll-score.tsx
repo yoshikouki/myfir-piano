@@ -21,6 +21,8 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
   const endIndex = Math.min(song.notes.length, startIndex + visibleRange);
   const _visibleNotes = song.notes.slice(startIndex, endIndex);
 
+  const initialX = centerPosition * (60 + 8);
+
   return (
     <div className="relative overflow-hidden">
       {currentNoteIndex >= 0 && (
@@ -40,8 +42,11 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
       )}
       <motion.div
         className="flex justify-start gap-2 whitespace-nowrap text-2xl"
+        initial={{
+          x: initialX,
+        }}
         animate={{
-          x: -(currentNoteIndex * (60 + 8)) + (centerPosition * (60 + 8)),
+          x: -(currentNoteIndex * (60 + 8)) + initialX,
         }}
         transition={{
           type: "spring",
@@ -50,10 +55,13 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
         }}
       >
         {song.notes.map((n, i) => (
-          <div key={`${i}-${n.pitch}`} className="relative inline-block min-w-[60px] text-center">
+          <div
+            key={`${i}-${n.pitch}`}
+            className="relative inline-block min-w-[60px] text-center"
+          >
             <motion.span
-              className={`relative inline-block px-2 z-20 ${
-                i === currentNoteIndex ? "text-white" : ""
+              className={`relative z-20 inline-block px-2 ${
+                i === currentNoteIndex ? "text-yellow-300" : ""
               }`}
               animate={{
                 scale: i === currentNoteIndex ? 1.2 : 1,
