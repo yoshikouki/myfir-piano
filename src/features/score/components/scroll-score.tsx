@@ -22,14 +22,26 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
   const _visibleNotes = song.notes.slice(startIndex, endIndex);
 
   return (
-    <div className="overflow-hidden">
+    <div className="relative overflow-hidden">
+      {currentNoteIndex >= 0 && (
+        <motion.div
+          layoutId="highlight"
+          data-testid="highlight"
+          className="absolute top-0 left-0 z-10 h-full w-[60px] rounded bg-red-500"
+          style={{
+            left: `${centerPosition * (60 + 8)}px`,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+          }}
+        />
+      )}
       <motion.div
         className="flex justify-start gap-2 whitespace-nowrap text-2xl"
         animate={{
-          x:
-            currentNoteIndex >= centerPosition
-              ? -(currentNoteIndex - centerPosition) * (60 + 8)
-              : 0,
+          x: -(currentNoteIndex * (60 + 8)) + (centerPosition * (60 + 8)),
         }}
         transition={{
           type: "spring",
@@ -38,20 +50,21 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
         }}
       >
         {song.notes.map((n, i) => (
-          <motion.span
-            key={`${i}-${n.pitch}`}
-            className={`inline-block min-w-[60px] text-center ${
-              i === currentNoteIndex ? "rounded bg-red-500 px-2 text-white" : ""
-            }`}
-            animate={{
-              scale: i === currentNoteIndex ? 1.2 : 1,
-            }}
-            transition={{
-              duration: 0.2,
-            }}
-          >
-            {pitchToKatakana(n.pitch as Pitch)}
-          </motion.span>
+          <div key={`${i}-${n.pitch}`} className="relative inline-block min-w-[60px] text-center">
+            <motion.span
+              className={`relative inline-block px-2 z-20 ${
+                i === currentNoteIndex ? "text-white" : ""
+              }`}
+              animate={{
+                scale: i === currentNoteIndex ? 1.2 : 1,
+              }}
+              transition={{
+                duration: 0.2,
+              }}
+            >
+              {pitchToKatakana(n.pitch as Pitch)}
+            </motion.span>
+          </div>
         ))}
       </motion.div>
     </div>
