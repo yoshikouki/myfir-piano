@@ -12,13 +12,13 @@
   - AudioEngine 経由のピアノ音源再生（遅延計測を含む）
   - ピアノ音源形式 (SoundFont／分割サンプル) の比較と KPI 収集
   - オフライン時の譜面・音源キャッシュ (Service Worker)
-- プリセット楽曲: **きらきら星** 1 曲のみ (YAML 定義 → JSON 変換)
+- プリセット楽曲: **きらきら星** 1 曲のみ (JSON形式で定義)
 
 ## 使用技術
 - Next.js(App Router)
 - TypeScript
 - Tailwind CSS
-- WebAudio API
+- Tone.js (音源再生)
 - motion (for animation)
 - Vitest / Testing Library
 - Playwright Component & E2E
@@ -39,15 +39,15 @@
    - 現在ノート・過去ノート・未来ノートの視覚的区別
    - 現在ノートをハイライト
 5. ✅ AudioEngine PoC & 音源形式比較
-   - **方式B: 分割サンプル (合成音源)** を SampleAudioEngine で実装
-   - WebAudio API で各音程の合成音を生成・再生
+   - **Tone.js を使用した音源実装** を SampleAudioEngine で実装
+   - Tone.js の Synth を使って高品質な音を生成・再生
    - 低レイテンシでの音再生を実現
 6. ✅ PlayController PoC
    - Lv.1 の進行ロジック (正しい鍵盤を押すと次音へ進行)
    - 次鍵盤ハイライト・譜面ハイライトと同期
    - 完了検知・リセット機能を実装
 7. テスト
-   - ユニット: YAML→JSON 変換, HitJudge
+   - ユニット: PlayController ロジック, コンポーネント単体
    - 統合: PlayController→AudioEngine 呼び出し順
-   - Component: Keyboard, ScrollScore (Playwright)
+   - Component: Keyboard, ScrollScore (Testing Library)
    - 手動 E2E: iPhone / Android 実機タップ, レイテンシ計測

@@ -7,112 +7,59 @@ src/
   app/
     layout.tsx
     page.tsx
-    play/[songId]/page.tsx
-    result/[songId]/page.tsx
-  components/
   features/
     keyboard/
+      components/
     score/
+      components/
     player/
-    progress/
-  repositories/
-    song/
-      local.ts
-      cms.ts
   lib/
     audio/
-    i18n/
+    song.schema.ts
+    utils.ts
   songs/
     twinkle_twinkle.json
-    kaeru.json
-  scripts/
-  workers/
-    sw.ts
 ```
 
 ## ドメインモデル
 
-```ts
-// song.schema.ts
-import { z } from "zod";
+楽曲データは`song.schema.ts`で型安全性を保証しています：
 
-export const Pitch = z.enum([
-  "C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3",
-  "C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4",
-  "C5",
-]);
-export type Pitch = z.infer<typeof Pitch>;
-
-export const NoteSchema = z.object({
-  pitch: Pitch,
-  duration: z.number(),           // 拍比 (1 = 四分音符)
-  lyric: z.string().optional(),
-});
-
-export const SongSchema = z.object({
-  meta: z.object({
-    id: z.string(),
-    titleJp: z.string(),
-    titleEn: z.string().optional(),
-    level: z.number().int().min(1).max(5),
-    bpm: z.number(),
-    timeSig: z.tuple([z.number(), z.number()]),
-  }),
-  notes: z.array(NoteSchema),
-});
-export type Song = z.infer<typeof SongSchema>;
-```
+- **Pitch**: C3からC5までの音高定義
+- **Note**: 音高・拍比・歌詞を含む音符データ
+- **Song**: メタデータ（ID、タイトル、レベル、BPM、拍子）と音符配列
 
 ## 譜面データ管理
 
 | 項目 | 内容 |
 |---|---|
 | 保管場所 | `src/songs/*.json` |
-| 変換フロー | `SongSchema` で型安全性を保証 |
-| Repository | `SongRepository` 抽象 + `LocalSongRepo` 実装（将来 `CmsSongRepo` 追加） |
+| 型安全性 | `SongSchema` で型安全性を保証 |
+| 読み込み | 静的インポートによる楽曲データ取得 |
 
 ## AudioEngine & HitJudge
 
-```ts
-export interface AudioEngine {
-  load(fontUrl: string): Promise<void>;
-  playNote(pitch: Pitch, velocity: number): void;
-  schedule(notes: ScheduledNote[]): void;
-}
+音源再生とタイミング判定を担当：
 
-export interface HitJudge {
-  judge(expectedAt: number, actualAt: number): "perfect" | "good" | "miss";
-}
-```
+- **AudioEngine**: Tone.jsを使用した音源の初期化と再生
+- **HitJudge**: 期待タイミングと実際のタイミングから判定結果を算出
 
 ## PlayController
 
-```ts
-export class PlayController {
-  constructor(
-    private songRepo: SongRepository,
-    private player: AudioEngine,
-    private judge: HitJudge,
-  ) {}
+ゲームプレイの進行を管理：
 
-  async load(id: string) {
-    this.song = await this.songRepo.get(id);
-  }
-
-  start() {
-    // schedule notes, subscribe input, emit progress
-  }
-}
-```
+- 楽曲データの読み込み
+- 演奏進行の制御（次音符への進行、完了検知）
+- AudioEngineとの連携による音再生
+- UIコンポーネントとの状態同期
 
 ## テスト戦略
 
 | レイヤ | テスト内容 | ツール |
 |---|---|---|
-| ユニット | YAML→JSON 変換／HitJudge 判定 | Vitest |
-| 統合 | PlayController → AudioEngine 呼び出し順 | Vitest |
-| コンポーネント | 鍵盤 UI 反映 | Playwright Component |
-| E2E | 実機タッチ／遅延計測 (将来) | Playwright + BrowserStack |
+| ユニット | PlayController ロジック／判定処理 | Vitest |
+| コンポーネント | 鍵盤・譜面UI の動作確認 | Vitest + Testing Library |
+| E2E | ブラウザでの統合動作 (将来) | Playwright |
 
 ## Service Worker キャッシュ戦略
 
@@ -122,11 +69,11 @@ export class PlayController {
 | 音源 | CacheFirst (30d) |
 | App Shell | StaleWhileRevalidate |
 
-## 拡張フック
+## 拡張可能性
 
-| 将来機能 | 仕込み箇所 |
+| 将来機能 | 拡張方針 |
 |---|---|
-| MIDI キーボード | `MidiOutEngine` |
-| CMS 楽曲配信 | `CmsSongRepo` |
-| AR Piano | `<VisionProvider>` コンテキスト |
+| MIDI キーボード | AudioEngine インターフェースの拡張 |
+| 楽曲配信 | 静的インポートからAPI読み込みへの切り替え |
+| 複数楽曲対応 | 楽曲選択UIとルーティングの追加 |
 
