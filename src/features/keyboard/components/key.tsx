@@ -3,12 +3,12 @@ import { type VariantProps, cva } from "class-variance-authority";
 import { type Pitch, isBlackKey, pitchLabels } from "../pitches";
 
 const keyVariants = cva(
-  "touch-manipulation select-none transition-colors active:translate-y-0.5",
+  "touch-manipulation select-none transition-colors active:translate-y-0.5 pointer-events-auto flex items-end justify-center pb-4",
   {
     variants: {
       keyType: {
-        white: "h-full flex-1 border-black border-r text-sm md:text-base",
-        black: "h-1/2 w-full border-r-0 text-white",
+        white: "h-full flex-1 border-black border-r text-sm md:text-base relative",
+        black: "h-2/5 w-full border-r-0 text-white",
       },
       highlighted: {
         true: "",
