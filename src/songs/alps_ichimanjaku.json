@@ -4,7 +4,8 @@
     "titleJp": "アルプス一万尺",
     "titleEn": "Alpine Song",
     "bpm": 120,
-    "timeSig": [4, 4]
+    "timeSig": [4, 4],
+    "emoji": "🏔️"
   },
   "notes": [
     { "pitch": "C4", "duration": 1, "lyric": "ア" },

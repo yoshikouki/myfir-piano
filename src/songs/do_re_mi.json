@@ -4,7 +4,8 @@
     "titleJp": "ドレミの歌",
     "titleEn": "Do-Re-Mi",
     "bpm": 90,
-    "timeSig": [4, 4]
+    "timeSig": [4, 4],
+    "emoji": "🎵"
   },
   "notes": [
     {

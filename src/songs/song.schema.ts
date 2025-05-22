@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { PITCHES } from "@/features/keyboard/pitches";
+import { z } from "zod";
 
 export const Pitch = z.enum(PITCHES);
 export type Pitch = z.infer<typeof Pitch>;
@@ -15,6 +15,7 @@ export const SongSchema = z.object({
     id: z.string(),
     titleJp: z.string(),
     titleEn: z.string().optional(),
+    emoji: z.string(),
     bpm: z.number(),
     timeSig: z.tuple([z.number(), z.number()]),
   }),

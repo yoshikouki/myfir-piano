@@ -4,7 +4,8 @@
     "titleJp": "犬のおまわりさん",
     "titleEn": "Dog Policeman",
     "bpm": 110,
-    "timeSig": [4, 4]
+    "timeSig": [4, 4],
+    "emoji": "🐕"
   },
   "notes": [
     { "pitch": "G4", "duration": 1, "lyric": "マ" },

@@ -4,7 +4,8 @@
     "titleJp": "かえるの合唱",
     "titleEn": "Frog Chorus",
     "bpm": 100,
-    "timeSig": [4, 4]
+    "timeSig": [4, 4],
+    "emoji": "🐸"
   },
   "notes": [
     {

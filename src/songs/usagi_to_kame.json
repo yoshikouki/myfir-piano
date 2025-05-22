@@ -4,7 +4,8 @@
     "titleJp": "うさぎとかめ",
     "titleEn": "The Tortoise and the Hare",
     "bpm": 100,
-    "timeSig": [4, 4]
+    "timeSig": [4, 4],
+    "emoji": "🐰"
   },
   "notes": [
     { "pitch": "C4", "duration": 1, "lyric": "モ" },

@@ -4,7 +4,8 @@
     "titleJp": "ぞうさん",
     "titleEn": "Elephant",
     "bpm": 90,
-    "timeSig": [3, 4]
+    "timeSig": [3, 4],
+    "emoji": "🐘"
   },
   "notes": [
     { "pitch": "F4", "duration": 1, "lyric": "ゾ" },

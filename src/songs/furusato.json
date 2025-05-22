@@ -4,7 +4,8 @@
     "titleJp": "ふるさと",
     "titleEn": "Hometown",
     "bpm": 85,
-    "timeSig": [4, 4]
+    "timeSig": [4, 4],
+    "emoji": "🏡"
   },
   "notes": [
     { "pitch": "C4", "duration": 2, "lyric": "ウ" },

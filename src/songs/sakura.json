@@ -3,8 +3,9 @@
     "id": "sakura",
     "titleJp": "さくら",
     "titleEn": "Sakura",
+    "emoji": "🌸",
     "bpm": 90,
-    "timeSig": "4/4"
+    "timeSig": [4, 4]
   },
   "notes": [
     { "pitch": "B4", "duration": 2, "lyric": "サ" },

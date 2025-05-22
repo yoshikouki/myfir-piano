@@ -4,7 +4,8 @@
     "titleJp": "ハッピーバースデー",
     "titleEn": "Happy Birthday to You",
     "bpm": 80,
-    "timeSig": [3, 4]
+    "timeSig": [3, 4],
+    "emoji": "🎂"
   },
   "notes": [
     {
