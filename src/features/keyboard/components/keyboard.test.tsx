@@ -14,7 +14,7 @@ describe("Keyboard", () => {
     render(<Keyboard onPress={spy} />);
     // This test assumes C3 is the first key with label "ド"
     // and that PITCHES includes C3.
-    fireEvent.pointerDown(screen.getAllByText("ド")[0]); 
+    fireEvent.pointerDown(screen.getAllByText("ド")[0]);
     expect(spy).toHaveBeenCalledWith("C3");
   });
 });
