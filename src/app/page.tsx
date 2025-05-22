@@ -1,85 +1,79 @@
-import Image from "next/image";
+"use client";
+
 import { Keyboard } from "@/features/keyboard/components/keyboard";
+import type { Pitch } from "@/features/keyboard/pitches";
+import { PlayController } from "@/features/player/play-controller";
+import { ScrollScore } from "@/features/score/components/scroll-score";
+import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
+import type { Song } from "@/lib/song.schema";
+import twinkleTwinkleSong from "@/songs/twinkle_twinkle.json";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] p-8 pb-0 sm:p-20 sm:pb-0">
-      <main className="flex-grow flex flex-col items-center gap-[32px] sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm/6 sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="rounded bg-black/[.05] px-1 py-0.5 font-[family-name:var(--font-geist-mono)] font-semibold dark:bg-white/[.06]">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-        </ol>
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [playController, setPlayController] = useState<PlayController | null>(null);
+  const [song] = useState<Song>(twinkleTwinkleSong as Song);
+  const [isCompleted, setIsCompleted] = useState(false);
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            className="flex h-10 items-center justify-center gap-2 rounded-full border border-transparent border-solid bg-foreground px-4 font-medium text-background text-sm transition-colors hover:bg-[#383838] sm:h-12 sm:w-auto sm:px-5 sm:text-base dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="flex h-10 w-full items-center justify-center rounded-full border border-black/[.08] border-solid px-4 font-medium text-sm transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:w-auto sm:px-5 sm:text-base md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const engine = new SampleAudioEngine();
+    const controller = new PlayController(engine);
+    controller.load(song);
+    setPlayController(controller);
+  }, [song]);
+
+  const handleKeyPress = (pitch: Pitch) => {
+    if (!playController) return;
+    const oldIndex = playController.index;
+    playController.press(pitch);
+    const newIndex = playController.index;
+    if (newIndex !== oldIndex) {
+      setCurrentIndex(newIndex);
+      setIsCompleted(playController.isCompleted() || false);
+    }
+  };
+
+  const handleReset = () => {
+    if (!playController) return;
+    playController.reset();
+    setCurrentIndex(0);
+    setIsCompleted(false);
+  };
+
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center p-4">
+      <div className="w-full max-w-4xl">
+        <div className="mb-8 text-center">
+          <h1 className="mb-4 font-bold text-3xl">{song.meta.titleJp}</h1>
+          <div className="rounded-lg bg-gray-100 p-4">
+            <ScrollScore song={song} />
+          </div>
         </div>
-      </main>
-      <footer className="flex flex-wrap items-center justify-center gap-[24px] mb-8">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-          Go to nextjs.org →
-        </a>
-      </footer>
-      <Keyboard />
+        <div className="flex justify-center">
+          <Keyboard
+            highlightedPitch={playController?.getCurrentNote()?.pitch}
+            onPress={handleKeyPress}
+          />
+        </div>
+        <div className="mt-4 text-center">
+          {isCompleted ? (
+            <div className="space-y-4">
+              <div className="font-bold text-2xl text-green-600">🎉 完成！</div>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="rounded-lg bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
+              >
+                もう一度
+              </button>
+            </div>
+          ) : (
+            <div className="text-gray-600 text-sm">
+              進行: {currentIndex + 1} / {song.notes.length}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

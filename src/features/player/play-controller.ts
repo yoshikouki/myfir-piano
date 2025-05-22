@@ -21,4 +21,17 @@ export class PlayController {
       this.index += 1;
     }
   }
+
+  getCurrentNote() {
+    if (!this.song || this.index >= this.song.notes.length) return undefined;
+    return this.song.notes[this.index];
+  }
+
+  isCompleted() {
+    return this.song && this.index >= this.song.notes.length;
+  }
+
+  reset() {
+    this.index = 0;
+  }
 }

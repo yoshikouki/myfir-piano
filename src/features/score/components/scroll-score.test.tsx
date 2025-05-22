@@ -10,6 +10,6 @@ describe("ScrollScore", () => {
   it("highlights current note", () => {
     render(<ScrollScore song={song} currentIndex={0} />);
     const first = screen.getAllByText("き")[0];
-    expect(first.className).toContain("text-red-600");
+    expect(first.className).toContain("bg-red-500");
   });
 });
