@@ -12,9 +12,9 @@ describe("Keyboard", () => {
   it("calls onPress with pitch", () => {
     const spy = vi.fn();
     render(<Keyboard onPress={spy} />);
-    // This test assumes C3 is the first key with label "ド"
-    // and that PITCHES includes C3.
+    // This test assumes C4 is the first key with label "ド"
+    // and that PITCHES includes C4.
     fireEvent.pointerDown(screen.getAllByText("ド")[0]);
-    expect(spy).toHaveBeenCalledWith("C3");
+    expect(spy).toHaveBeenCalledWith("C4");
   });
 });

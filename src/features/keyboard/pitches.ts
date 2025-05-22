@@ -1,13 +1,4 @@
 export const PITCHES = [
-  "C3",
-  "C#3",
-  "D3",
-  "D#3",
-  "E3",
-  "F3",
-  "F#3",
-  "G3",
-  "G#3",
   "A3",
   "A#3",
   "B3",
@@ -24,19 +15,17 @@ export const PITCHES = [
   "A#4",
   "B4",
   "C5",
+  "C#5",
+  "D5",
+  "D#5",
+  "E5",
+  "F5",
+  "F#5",
+  "G5",
 ] as const;
 export type Pitch = (typeof PITCHES)[number];
 
 export const pitchLabels: Record<Pitch, string> = {
-  C3: "ド",
-  "C#3": "ド#",
-  D3: "レ",
-  "D#3": "レ#",
-  E3: "ミ",
-  F3: "ファ",
-  "F#3": "ファ#",
-  G3: "ソ",
-  "G#3": "ソ#",
   A3: "ラ",
   "A#3": "ラ#",
   B3: "シ",
@@ -53,4 +42,13 @@ export const pitchLabels: Record<Pitch, string> = {
   "A#4": "ラ#",
   B4: "シ",
   C5: "ド",
+  "C#5": "ド#",
+  D5: "レ",
+  "D#5": "レ#",
+  E5: "ミ",
+  F5: "ファ",
+  "F#5": "ファ#",
+  G5: "ソ",
 };
+
+export const isBlackKey = (pitch: Pitch): boolean => pitch.includes("#");

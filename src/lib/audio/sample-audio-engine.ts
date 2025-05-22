@@ -34,15 +34,6 @@ export class SampleAudioEngine implements AudioEngine {
 
   private pitchToNote(pitch: Pitch): string {
     const noteMap: Record<Pitch, string> = {
-      C3: "C3",
-      "C#3": "C#3",
-      D3: "D3",
-      "D#3": "D#3",
-      E3: "E3",
-      F3: "F3",
-      "F#3": "F#3",
-      G3: "G3",
-      "G#3": "G#3",
       A3: "A3",
       "A#3": "A#3",
       B3: "B3",
@@ -59,6 +50,13 @@ export class SampleAudioEngine implements AudioEngine {
       "A#4": "A#4",
       B4: "B4",
       C5: "C5",
+      "C#5": "C#5",
+      D5: "D5",
+      "D#5": "D#5",
+      E5: "E5",
+      F5: "F5",
+      "F#5": "F#5",
+      G5: "G5",
     };
     return noteMap[pitch];
   }
