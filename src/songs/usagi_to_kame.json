@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "id": "usagi_to_kame",
+    "titleJp": "うさぎとかめ",
+    "titleEn": "The Tortoise and the Hare",
+    "bpm": 100,
+    "timeSig": "4/4"
+  },
+  "notes": [
+    { "pitch": "C4", "duration": 1, "lyric": "モ" },
+    { "pitch": "C4", "duration": 1, "lyric": "シ" },
+    { "pitch": "D4", "duration": 1, "lyric": "モ" },
+    { "pitch": "E4", "duration": 1, "lyric": "シ" },
+    { "pitch": "F4", "duration": 1, "lyric": "カ" },
+    { "pitch": "E4", "duration": 1, "lyric": "メ" },
+    { "pitch": "D4", "duration": 1, "lyric": "ヨ" },
+    { "pitch": "C4", "duration": 1, "lyric": "カ" },
+    { "pitch": "E4", "duration": 1, "lyric": "メ" },
+    { "pitch": "E4", "duration": 1, "lyric": "サ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ン" },
+    { "pitch": "G4", "duration": 1, "lyric": "ヨ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ド" },
+    { "pitch": "E4", "duration": 1, "lyric": "コ" },
+    { "pitch": "D4", "duration": 1, "lyric": "マ" },
+    { "pitch": "C4", "duration": 1, "lyric": "デ" },
+    { "pitch": "D4", "duration": 1, "lyric": "オ" },
+    { "pitch": "E4", "duration": 1, "lyric": "イ" },
+    { "pitch": "F4", "duration": 1, "lyric": "デ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ニ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ノ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ツ" },
+    { "pitch": "E4", "duration": 1, "lyric": "タ" },
+    { "pitch": "D4", "duration": 1, "lyric": "ノ" },
+    { "pitch": "C4", "duration": 2, "lyric": "デ" },
+    { "pitch": "C4", "duration": 1, "lyric": "ス" },
+    { "pitch": "G4", "duration": 1, "lyric": "カ" }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "id": "furusato",
+    "titleJp": "ふるさと",
+    "titleEn": "Hometown",
+    "bpm": 85,
+    "timeSig": "4/4"
+  },
+  "notes": [
+    { "pitch": "C4", "duration": 2, "lyric": "ウ" },
+    { "pitch": "E4", "duration": 1, "lyric": "サ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ギ" },
+    { "pitch": "G4", "duration": 2, "lyric": "オ" },
+    { "pitch": "F4", "duration": 1, "lyric": "イ" },
+    { "pitch": "E4", "duration": 1, "lyric": "シ" },
+    { "pitch": "D4", "duration": 4, "lyric": "カ" },
+    { "pitch": "D4", "duration": 2, "lyric": "ノ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ヤ" },
+    { "pitch": "A4", "duration": 1, "lyric": "マ" },
+    { "pitch": "A4", "duration": 2, "lyric": "コ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ブ" },
+    { "pitch": "F4", "duration": 1, "lyric": "ナ" },
+    { "pitch": "E4", "duration": 4, "lyric": "ノ" },
+    { "pitch": "E4", "duration": 2, "lyric": "ミ" },
+    { "pitch": "G4", "duration": 1, "lyric": "ズ" },
+    { "pitch": "C5", "duration": 1, "lyric": "ノ" },
+    { "pitch": "C5", "duration": 2, "lyric": "オ" },
+    { "pitch": "A4", "duration": 1, "lyric": "ト" },
+    { "pitch": "G4", "duration": 1, "lyric": "ノ" },
+    { "pitch": "F4", "duration": 4, "lyric": "ヨ" },
+    { "pitch": "F4", "duration": 2, "lyric": "ユ" },
+    { "pitch": "A4", "duration": 1, "lyric": "メ" },
+    { "pitch": "C5", "duration": 1, "lyric": "ハ" },
+    { "pitch": "C5", "duration": 2, "lyric": "イ" },
+    { "pitch": "A4", "duration": 1, "lyric": "マ" },
+    { "pitch": "G4", "duration": 1, "lyric": "モ" },
+    { "pitch": "C4", "duration": 4, "lyric": "メ" },
+    { "pitch": "C4", "duration": 4, "lyric": "グ" },
+    { "pitch": "C4", "duration": 4, "lyric": "リ" }
+  ]
+}
