@@ -16,10 +16,10 @@ export function Key({ pitch, highlighted, onPress }: KeyProps) {
       data-pitch={pitch}
       className={cn(
         "touch-manipulation select-none transition-colors active:translate-y-0.5",
-        isBlackKey && "h-20 w-full border-r-0 text-white md:h-24",
+        isBlackKey && "h-1/2 w-full border-r-0 text-white",
         isBlackKey && !highlighted && "bg-black",
         isBlackKey && highlighted && "bg-red-600",
-        !isBlackKey && "h-32 flex-1 border-black border-r text-sm md:h-40 md:text-base",
+        !isBlackKey && "h-full flex-1 border-black border-r text-sm md:text-base",
         !isBlackKey && !highlighted && "bg-white",
         !isBlackKey && highlighted && "bg-red-200",
       )}

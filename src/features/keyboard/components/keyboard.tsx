@@ -11,7 +11,7 @@ export function Keyboard({ highlightedPitch, onPress }: KeyboardProps) {
   const blackKeys = PITCHES.filter((p) => p.includes("#"));
 
   return (
-    <div className="relative flex w-full">
+    <div className="relative flex h-full w-full">
       {whiteKeys.map((p) => (
         <Key key={p} pitch={p} highlighted={p === highlightedPitch} onPress={onPress} />
       ))}
@@ -35,7 +35,7 @@ export function Keyboard({ highlightedPitch, onPress }: KeyboardProps) {
         return (
           <div
             key={p}
-            className="absolute z-10"
+            className="absolute h-full"
             style={{
               left: `${((whiteKeyIndex + 0.75) / whiteKeys.length) * 100}%`,
               width: `${(0.6 / whiteKeys.length) * 100}%`,
