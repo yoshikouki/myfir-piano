@@ -33,8 +33,8 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0
       zod:
-        specifier: ^3.25.17
-        version: 3.25.17
+        specifier: ^3.25.20
+        version: 3.25.20
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -1850,8 +1850,8 @@ packages:
     resolution: {integrity: sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==}
     engines: {node: '>=18'}
 
-  zod@3.25.17:
-    resolution: {integrity: sha512-8hQzQ/kMOIFbwOgPrm9Sf9rtFHpFUMy4HvN0yEB0spw14aYi0uT5xG5CE2DB9cd51GWNsz+DNO7se1kztHMKnw==}
+  zod@3.25.20:
+    resolution: {integrity: sha512-z03fqpTMDF1G02VLKUMt6vyACE7rNWkh3gpXVHgPTw28NPtDFRGvcpTtPwn2kMKtQ0idtYJUTxchytmnqYswcw==}
 
 snapshots:
 
@@ -3500,4 +3500,4 @@ snapshots:
 
   yallist@5.0.0: {}
 
-  zod@3.25.17: {}
+  zod@3.25.20: {}
