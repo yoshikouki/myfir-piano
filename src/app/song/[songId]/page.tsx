@@ -95,7 +95,10 @@ export default function SongPage() {
             <ArrowLeft size={16} />
             きょくリスト
           </Link>
-          <h1 className="font-bold text-xl md:text-2xl">{song.meta.titleJp}</h1>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">{song.meta.emoji}</span>
+            <h1 className="font-bold text-xl md:text-2xl">{song.meta.titleJp}</h1>
+          </div>
           <div className="w-20" />
         </div>
       </header>
