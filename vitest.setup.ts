@@ -1,6 +1,17 @@
 import "@testing-library/jest-dom";
-import { vi } from "vitest";
 import React from "react";
+import { vi } from "vitest";
+
+type MotionProps = {
+  animate?: unknown;
+  transition?: unknown;
+  layoutId?: string;
+  whileHover?: unknown;
+  whileTap?: unknown;
+  initial?: unknown;
+  exit?: unknown;
+  [key: string]: unknown;
+};
 
 vi.mock("motion/react", () => ({
   motion: new Proxy(
@@ -8,7 +19,7 @@ vi.mock("motion/react", () => ({
     {
       get: (_target, prop) => {
         if (typeof prop === "string") {
-          return React.forwardRef<any, any>((props, ref) => {
+          return React.forwardRef<HTMLElement, MotionProps>((props, ref) => {
             const {
               animate,
               transition,
