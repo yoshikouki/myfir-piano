@@ -131,7 +131,7 @@ export default function SongPage() {
         </div>
       </div>
 
-      <div className="fixed right-0 bottom-0 left-0 h-1/3 border-gray-200 border-t bg-white shadow-lg md:h-1/3">
+      <div className="fixed right-0 bottom-0 left-0 h-1/3 min-h-40 border-gray-200 border-t bg-white shadow-lg md:h-1/3">
         <div className="flex h-full justify-center overflow-x-auto">
           <Keyboard
             highlightedPitch={playController?.getCurrentNote()?.pitch}
