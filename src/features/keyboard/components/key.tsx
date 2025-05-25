@@ -25,7 +25,7 @@ const keyVariants = cva(
       {
         keyType: "white",
         highlighted: true,
-        className: "bg-primary/20",
+        className: "bg-primary text-white font-bold shadow-lg border-0",
       },
       {
         keyType: "black",
@@ -35,7 +35,7 @@ const keyVariants = cva(
       {
         keyType: "black",
         highlighted: true,
-        className: "bg-primary",
+        className: "bg-primary shadow-lg",
       },
     ],
     defaultVariants: {
@@ -54,13 +54,6 @@ export type KeyProps = {
 
 export function Key({ pitch, highlighted = false, onPress, onRelease }: KeyProps) {
   const keyType = isBlackKey(pitch) ? "black" : "white";
-
-  const getBackgroundColor = () => {
-    if (keyType === "white") {
-      return highlighted ? "oklch(var(--primary) / 0.2)" : "oklch(var(--background))";
-    }
-    return highlighted ? "oklch(var(--primary))" : "oklch(0 0 0)";
-  };
 
   const handlePointerDown = (e: React.PointerEvent) => {
     e.preventDefault();
@@ -81,14 +74,11 @@ export function Key({ pitch, highlighted = false, onPress, onRelease }: KeyProps
     <motion.button
       type="button"
       data-pitch={pitch}
-      className={cn(keyVariants({ keyType, highlighted: false }))}
+      className={cn(keyVariants({ keyType, highlighted }))}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
       onPointerCancel={handlePointerUp}
-      animate={{
-        backgroundColor: getBackgroundColor(),
-      }}
       transition={{
         duration: 0.2,
         delay: 0.2,

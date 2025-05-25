@@ -44,22 +44,6 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
 
   return (
     <div className="relative overflow-hidden">
-      {currentNoteIndex >= 0 && (
-        <motion.div
-          layoutId="highlight"
-          data-testid="highlight"
-          className="absolute top-0 left-0 h-full rounded bg-primary"
-          style={{
-            left: `${highlightPosition}px`,
-            width: `${calculateNoteWidth(song.notes[currentNoteIndex]?.duration ?? 1)}px`,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 500,
-            damping: 30,
-          }}
-        />
-      )}
       <motion.div
         className="flex justify-start gap-2 whitespace-nowrap text-2xl"
         initial={{
@@ -84,20 +68,36 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
               width: `${calculateNoteWidth(n.duration)}px`,
             }}
           >
-            <motion.span
-              className={cn("relative inline-block pr-2", isLongNote(n) ? "pl-4" : "pl-2")}
+            <motion.div
+              className={cn(
+                "relative inline-block h-full rounded",
+                i === currentNoteIndex ? "bg-primary" : "",
+              )}
               animate={{
-                scale: i === currentNoteIndex ? 1.2 : 1,
-                color:
-                  i === currentNoteIndex ? "oklch(var(--chart-4))" : "oklch(var(--foreground))",
+                scale: i === currentNoteIndex ? 1 : 1,
               }}
               transition={{
                 duration: 0.2,
                 delay: 0.2,
               }}
             >
-              {pitchToKatakana(n.pitch as Pitch)}
-            </motion.span>
+              <motion.span
+                className={cn(
+                  "relative inline-block pr-2",
+                  isLongNote(n) ? "pl-4" : "pl-2",
+                  i === currentNoteIndex ? "text-primary-foreground" : "text-foreground",
+                )}
+                animate={{
+                  scale: i === currentNoteIndex ? 1.2 : 1,
+                }}
+                transition={{
+                  duration: 0.2,
+                  delay: 0.2,
+                }}
+              >
+                {pitchToKatakana(n.pitch as Pitch)}
+              </motion.span>
+            </motion.div>
           </div>
         ))}
       </motion.div>

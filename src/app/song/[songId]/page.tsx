@@ -1,14 +1,15 @@
-import { type SongId, loadSong } from "@/features/songs/songs";
+import { loadSong } from "@/features/songs/songs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SongPageClient from "./song-page-client";
 
 type Props = {
-  params: { songId: string };
+  params: Promise<{ songId: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const song = await loadSong(params.songId as SongId).catch(() => null);
+  const { songId } = await params;
+  const song = await loadSong(songId);
 
   if (!song) {
     return {
@@ -22,7 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function SongPage({ params }: Props) {
-  const song = await loadSong(params.songId as SongId).catch(() => null);
+  const { songId } = await params;
+  const song = await loadSong(songId);
 
   if (!song) {
     notFound();

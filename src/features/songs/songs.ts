@@ -19,16 +19,24 @@ const songFiles = {
 
 export type SongId = keyof typeof songFiles;
 
-export async function loadSong(songId: SongId): Promise<Song> {
+export function isSongId(value: string): value is SongId {
+  return value in songFiles;
+}
+
+export async function loadSong(songId: string): Promise<Song | null> {
+  if (!isSongId(songId)) {
+    return null;
+  }
+
   const songModule = await songFiles[songId]();
   return songModule.default as Song;
 }
 
 export async function loadAllSongs(): Promise<Song[]> {
   const songs = await Promise.all(
-    Object.keys(songFiles).map(async (songId) => loadSong(songId as SongId)),
+    Object.keys(songFiles).map(async (songId) => loadSong(songId)),
   );
-  return songs;
+  return songs.filter((song): song is Song => song !== null);
 }
 
 export function getSongIds(): SongId[] {

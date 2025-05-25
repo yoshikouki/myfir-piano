@@ -1,6 +1,7 @@
 "use client";
 
 import { useInstallPrompt } from "@/components/use-install-prompt";
+import { DownloadIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export function UserMenu() {
@@ -49,7 +50,7 @@ export function UserMenu() {
 
       {isOpen && (
         <div
-          className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg"
+          className="absolute right-0 mt-2 min-w-50 rounded-md bg-white py-1 shadow-lg"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
@@ -64,21 +65,7 @@ export function UserMenu() {
               className="flex w-full items-center gap-3 px-4 py-2 text-foreground text-sm hover:bg-accent"
               role="menuitem"
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
+              <DownloadIcon size={16} />
               アプリをインストール
             </button>
           )}

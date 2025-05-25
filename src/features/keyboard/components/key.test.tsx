@@ -27,13 +27,25 @@ describe("Key component", () => {
   });
 
   it("applies highlighted state correctly", () => {
-    const testPitch = PITCHES[0];
-    const { rerender } = render(<Key pitch={testPitch} highlighted={false} />);
+    const whitePitch = PITCHES.find((p) => !p.includes("#"));
+    if (!whitePitch) throw new Error("No white pitch found for testing");
 
-    rerender(<Key pitch={testPitch} highlighted={true} />);
+    const { rerender } = render(<Key pitch={whitePitch} highlighted={false} />);
     const keyElement = screen.getByRole("button");
+    const initialClasses = keyElement.className;
 
-    expect(keyElement).toHaveAttribute("data-pitch", testPitch);
+    expect(keyElement).toHaveAttribute("data-pitch", whitePitch);
+    expect(initialClasses).toContain("bg-white");
+
+    rerender(<Key pitch={whitePitch} highlighted={true} />);
+    const highlightedKeyElement = screen.getByRole("button");
+    const highlightedClasses = highlightedKeyElement.className;
+
+    expect(highlightedKeyElement).toHaveAttribute("data-pitch", whitePitch);
+    expect(highlightedClasses).toContain("bg-primary");
+    expect(highlightedClasses).toContain("text-white");
+    expect(highlightedClasses).toContain("font-bold");
+    expect(highlightedClasses).not.toContain("bg-white");
   });
 
   it("calls onPress when a key is pressed", () => {
