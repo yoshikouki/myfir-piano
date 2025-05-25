@@ -5,47 +5,27 @@ import { Keyboard } from "@/features/keyboard/components/keyboard";
 import type { Pitch } from "@/features/keyboard/pitches";
 import { PlayController } from "@/features/player/play-controller";
 import { ScrollScore } from "@/features/score/components/scroll-score";
-import { type SongId, loadSong } from "@/features/songs/songs";
 import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
 import type { Song } from "@/songs/song.schema";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function SongPageClient() {
-  const params = useParams();
-  const songId = params.songId as SongId;
+type Props = {
+  song: Song;
+};
 
+export default function SongPageClient({ song }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playController, setPlayController] = useState<PlayController | null>(null);
-  const [song, setSong] = useState<Song | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const loadSongData = async () => {
-      try {
-        const songData = await loadSong(songId);
-        setSong(songData);
-
-        const engine = new SampleAudioEngine();
-        const controller = new PlayController(engine);
-        controller.load(songData);
-        setPlayController(controller);
-      } catch (err) {
-        setError("きょくの よみこみに しっぱいしました");
-        console.error("Failed to load song:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (songId) {
-      loadSongData();
-    }
-  }, [songId]);
+    const engine = new SampleAudioEngine();
+    const controller = new PlayController(engine);
+    controller.load(song);
+    setPlayController(controller);
+  }, [song]);
 
   const handleKeyPress = async (pitch: Pitch) => {
     if (!playController) return;
@@ -70,28 +50,6 @@ export default function SongPageClient() {
     setCurrentIndex(0);
     setIsCompleted(false);
   };
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-muted-foreground">きょくを よみこみちゅう...</div>
-      </div>
-    );
-  }
-
-  if (error || !song) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center">
-        <div className="mb-4 text-destructive">{error || "きょくが みつかりません"}</div>
-        <Link
-          href="/"
-          className="rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
-        >
-          きょくリストに もどる
-        </Link>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -140,13 +98,11 @@ export default function SongPageClient() {
         </div>
 
         <div className="fixed right-0 bottom-0 left-0 h-1/3 min-h-40 border-border border-t bg-background shadow-lg md:h-1/3">
-          <div className="flex h-full justify-center overflow-x-auto">
-            <Keyboard
-              highlightedPitch={playController?.getCurrentNote()?.pitch}
-              onPress={handleKeyPress}
-              onRelease={handleKeyRelease}
-            />
-          </div>
+          <Keyboard
+            highlightedPitch={playController?.getCurrentNote()?.pitch}
+            onPress={handleKeyPress}
+            onRelease={handleKeyRelease}
+          />
         </div>
       </div>
     </>
