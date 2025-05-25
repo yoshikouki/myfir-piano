@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "子供向けのオンラインピアノアプリケーション",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#000000",
+    background_color: "#FFF8F0",
+    theme_color: "#4A90E2",
     orientation: "landscape",
     icons: [
       {
