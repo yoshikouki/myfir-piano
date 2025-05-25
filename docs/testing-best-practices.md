@@ -6,8 +6,10 @@ myfir-pianoプロジェクトにおけるテスト実装の標準ガイドです
 
 ## 基本方針
 
-- **ユーザー視点**: 実装詳細ではなくユーザーの体験をテスト
+- **TDD (Test-Driven Development)**: Red-Green-Refactorサイクルを厳守し、テストが仕様書となる開発
+- **境界の明確化**: 外部依存との境界を明確にし、依存性逆転の原則に従った設計
 - **依存性注入**: 外部依存を注入可能な設計でテスタビリティを確保
+- **ユーザー視点**: 実装詳細ではなくユーザーの体験をテスト
 - **アクセシビリティ**: アクセシビリティ属性を活用したクエリを優先
 - **型安全性**: any型を使わず、厳密な型付けでテストの品質を担保
 
@@ -49,13 +51,13 @@ src/
 ```typescript
 describe("ComponentName", () => {
   it("期待される動作を日本語で記述", () => {
-    // Arrange: テストデータとモックの準備
+    // Given: テストデータとモックの準備
     const mockProps = { value: "test" };
     
-    // Act: テスト対象の実行
+    // When: テスト対象の実行
     render(<ComponentName {...mockProps} />);
     
-    // Assert: 期待結果の検証
+    // Then: 期待結果の検証
     expect(screen.getByText("test")).toBeInTheDocument();
   });
 });
@@ -297,9 +299,195 @@ it("ハイライト状態がアクセシビリティ属性に反映される", (
 });
 ```
 
+## TDD実践ガイド
+
+### Red-Green-Refactorサイクル
+
+```typescript
+// 1. RED: 失敗するテストを先に書く
+it("新しい楽曲を再生できる", () => {
+  const controller = new PlayController(mockEngine);
+  const song = createTestSong();
+  
+  // この時点でloadメソッドは存在しない
+  expect(() => controller.load(song)).not.toThrow();
+  expect(controller.getCurrentSong()).toBe(song);
+});
+
+// 2. GREEN: 最小限の実装でテストを通す
+class PlayController {
+  private currentSong?: Song;
+  
+  load(song: Song): void {
+    this.currentSong = song;
+  }
+  
+  getCurrentSong(): Song | undefined {
+    return this.currentSong;
+  }
+}
+
+// 3. REFACTOR: 設計を改善
+class PlayController {
+  private currentSong?: Song;
+  
+  constructor(
+    private readonly engine: AudioEngine,
+    private readonly validator: SongValidator = defaultValidator
+  ) {}
+  
+  load(song: Song): void {
+    this.validator.validate(song);
+    this.currentSong = song;
+    this.engine.prepare(song);
+  }
+}
+```
+
+### テストファーストの実践例
+
+```typescript
+// ❌ 実装先行の問題例
+// 実装を書いてからテストを書くと、実装詳細に依存したテストになりがち
+class AudioPlayer {
+  private cache = new Map();
+  play(pitch: string) {
+    if (this.cache.has(pitch)) {
+      // キャッシュから再生
+    }
+  }
+}
+
+// ✅ テストファーストの良い例
+describe("AudioPlayer", () => {
+  it("同じ音を連続して再生してもクラッシュしない", () => {
+    const player = new AudioPlayer(mockEngine);
+    expect(() => {
+      player.play("C4");
+      player.play("C4");
+    }).not.toThrow();
+  });
+  
+  it("異なる音程を同時に再生できる", () => {
+    const player = new AudioPlayer(mockEngine);
+    player.play("C4");
+    player.play("E4");
+    expect(mockEngine.playNote).toHaveBeenCalledTimes(2);
+  });
+});
+```
+
 ## 設計原則とベストプラクティス
 
-### 1. 依存性注入によるテスタビリティの向上
+### 1. 境界の明確化と依存性逆転の原則
+
+外部システムとの境界を明確にし、ビジネスロジックが外部依存に左右されない設計を実現します。
+
+```typescript
+// ✅ 境界を明確にしたアーキテクチャ
+
+// Domain層: ビジネスロジックの抽象化
+interface AudioEngine {
+  load(song: Song): Promise<void>;
+  playNote(pitch: string, duration: number): void;
+  stopNote(pitch: string): void;
+}
+
+interface StorageService {
+  saveSong(song: Song): Promise<void>;
+  loadSong(id: string): Promise<Song>;
+}
+
+// Application層: ユースケースの実装
+class PlayController {
+  constructor(
+    private readonly engine: AudioEngine,
+    private readonly storage: StorageService
+  ) {}
+  
+  async loadAndPlay(songId: string): Promise<void> {
+    const song = await this.storage.loadSong(songId);
+    await this.engine.load(song);
+    this.playSong(song);
+  }
+}
+
+// Infrastructure層: 具体的な実装
+class ToneJsAudioEngine implements AudioEngine {
+  async load(song: Song): Promise<void> {
+    // Tone.js固有の実装
+  }
+}
+
+class LocalStorageService implements StorageService {
+  async saveSong(song: Song): Promise<void> {
+    // LocalStorage固有の実装
+  }
+}
+
+// テストでの活用
+it("楽曲の読み込みと再生が連携する", async () => {
+  const mockEngine = createMockAudioEngine();
+  const mockStorage = createMockStorageService();
+  mockStorage.loadSong.mockResolvedValue(testSong);
+  
+  const controller = new PlayController(mockEngine, mockStorage);
+  await controller.loadAndPlay("song-1");
+  
+  expect(mockStorage.loadSong).toHaveBeenCalledWith("song-1");
+  expect(mockEngine.load).toHaveBeenCalledWith(testSong);
+});
+```
+
+### 2. コンポーネントの境界設計
+
+```typescript
+// ✅ Reactコンポーネントでの境界設計
+interface PianoKeyboardProps {
+  // 外部依存はインターフェースで抽象化
+  audioEngine?: AudioEngine;
+  storageService?: StorageService;
+  
+  // UIイベントは純粋な関数として外部に公開
+  onKeyPress?: (pitch: string) => void;
+  onSongLoad?: (song: Song) => void;
+}
+
+export function PianoKeyboard({
+  audioEngine = defaultAudioEngine,
+  storageService = defaultStorageService,
+  onKeyPress,
+  onSongLoad
+}: PianoKeyboardProps) {
+  // コンポーネントは外部依存の具体的な実装を知らない
+  const handleKeyPress = (pitch: string) => {
+    audioEngine.playNote(pitch, 1);
+    onKeyPress?.(pitch);
+  };
+  
+  return <Keyboard onPress={handleKeyPress} />;
+}
+
+// テストでの境界の活用
+it("キー押下時に音が再生される", () => {
+  const mockEngine = createMockAudioEngine();
+  const handleKeyPress = vi.fn();
+  
+  render(
+    <PianoKeyboard 
+      audioEngine={mockEngine}
+      onKeyPress={handleKeyPress}
+    />
+  );
+  
+  fireEvent.click(screen.getByRole("button", { name: "ド" }));
+  
+  expect(mockEngine.playNote).toHaveBeenCalledWith("C4", 1);
+  expect(handleKeyPress).toHaveBeenCalledWith("C4");
+});
+```
+
+### 3. 依存性注入によるテスタビリティの向上
 
 外部依存を注入可能にすることで、テストにおける制御性と分離性を確保します。
 
@@ -361,7 +549,7 @@ export function Piano({
 }
 ```
 
-### 2. テスト分離の原則
+### 4. テスト分離の原則
 
 ```typescript
 describe("PlayController", () => {
@@ -383,7 +571,7 @@ describe("PlayController", () => {
 });
 ```
 
-### 3. ユーザー中心のテスト思考
+### 5. ユーザー中心のテスト思考
 
 ```typescript
 // ✅ ユーザー視点: 実際の使用体験をテスト
@@ -394,12 +582,13 @@ it("ピアノキーをクリックすると音が再生される", () => {
 });
 
 // ❌ 実装詳細: 内部状態への過度な依存
-it("onPress関数が正しい引数で呼ばれる", () => {
-  // このテストは実装の詳細に焦点を当てすぎている
+it("stateが正しく更新される", () => {
+  // 内部stateの詳細をテストしている
+  expect(component.state.isPressed).toBe(true);
 });
 ```
 
-### 4. 段階的なテスト戦略
+### 6. 段階的なテスト戦略
 
 ```typescript
 describe("Keyboard コンポーネント", () => {
@@ -426,7 +615,7 @@ describe("Keyboard コンポーネント", () => {
 });
 ```
 
-### 5. エラーハンドリングとエッジケース
+### 7. エラーハンドリングとエッジケース
 
 ```typescript
 describe("エッジケースの処理", () => {
@@ -494,15 +683,18 @@ pnpm run test
 |------|------|----------|
 | `try-catch` の使用 | エラーハンドリングはテストフレームワークに委譲 | `expect().toThrow()` |
 | `any` 型の使用 | 型安全性の維持 | 適切な型定義またはジェネリクス |
-| 過度なモック | テストの信頼性低下 | 実際の依存関係を可能な限り使用 |
+| 過度なモック | テストの信頼性低下 | 境界でのみモックを使用し、内部は実装を使用 |
 | 実装詳細のテスト | リファクタリング耐性の低下 | ユーザー体験ベースのテスト |
+| テスト後の実装 | TDDの利点を失う | Red-Green-Refactorサイクルの徹底 |
 
 ### ✅ 推奨パターン
 
-1. **テストは仕様書**: コメント不要で意図が伝わる明確な記述
-2. **迅速なフィードバック**: 各テストは1秒以内で完了
-3. **独立性**: テスト間で状態を共有しない
-4. **段階的検証**: 基本機能 → インタラクション → エッジケース
+1. **TDDの徹底**: テストファーストで仕様を明確化
+2. **境界の意識**: 外部依存との境界を常に意識した設計
+3. **テストは仕様書**: コメント不要で意図が伝わる明確な記述
+4. **迅速なフィードバック**: 各テストは1秒以内で完了
+5. **独立性**: テスト間で状態を共有しない
+6. **段階的検証**: 基本機能 → インタラクション → エッジケース
 
 ## パフォーマンス最適化
 
