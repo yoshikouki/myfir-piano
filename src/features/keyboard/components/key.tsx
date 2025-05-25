@@ -4,12 +4,12 @@ import { motion } from "motion/react";
 import { type Pitch, isBlackKey, pitchLabels } from "../pitches";
 
 const keyVariants = cva(
-  "touch-manipulation select-none active:translate-y-0.5 pointer-events-auto flex items-end justify-center pb-4",
+  "touch-manipulation select-none active:translate-y-0.5 pointer-events-auto flex items-end justify-center pb-4 rounded-b-md shadow-sm",
   {
     variants: {
       keyType: {
-        white: "h-full flex-1 border-l text-sm md:text-base relative",
-        black: "h-1/2 w-full text-white rounded-b-md",
+        white: "h-full flex-1 text-sm md:text-base relative",
+        black: "h-1/2 w-full text-white rounded-t-sm rounded-b-lg",
       },
       highlighted: {
         true: "",
