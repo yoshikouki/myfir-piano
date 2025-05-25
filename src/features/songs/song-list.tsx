@@ -1,36 +1,8 @@
-"use client";
-
 import { loadAllSongs } from "@/features/songs/songs";
-import type { Song } from "@/songs/song.schema";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-export function SongList() {
-  const [songs, setSongs] = useState<Song[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadSongs = async () => {
-      try {
-        const allSongs = await loadAllSongs();
-        setSongs(allSongs);
-      } catch (error) {
-        console.error("Failed to load songs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadSongs();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center py-8">
-        <div className="text-gray-500">きょくを よみこみちゅう...</div>
-      </div>
-    );
-  }
+export async function SongList() {
+  const songs = await loadAllSongs();
 
   return (
     <div className="mx-auto max-w-2xl p-4">
