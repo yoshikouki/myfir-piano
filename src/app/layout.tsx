@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { InstallButton } from "@/components/install-button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "みーふぁーピアノ",
+  title: "まいふぁーピアノ",
   description: "子供向けのオンラインピアノアプリケーション",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "みーふぁーピアノ",
+    title: "まいふぁーピアノ",
   },
 };
 
@@ -40,7 +39,6 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <InstallButton />
       </body>
     </html>
   );

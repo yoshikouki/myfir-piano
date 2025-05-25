@@ -7,7 +7,6 @@ import { ScrollScore } from "@/features/score/components/scroll-score";
 import { type SongId, loadSong } from "@/features/songs/songs";
 import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
 import type { Song } from "@/songs/song.schema";
-import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -58,6 +57,11 @@ export default function SongPage() {
     }
   };
 
+  const handleKeyRelease = (pitch: Pitch) => {
+    if (!playController) return;
+    playController.audioEngine.stopNote(pitch);
+  };
+
   const handleReset = () => {
     if (!playController) return;
     playController.reset();
@@ -89,20 +93,6 @@ export default function SongPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-gray-200 border-b bg-white px-4 py-3 shadow-sm">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-1 text-blue-500 hover:text-blue-600">
-            <ChevronLeft size={16} />
-            きょくリスト
-          </Link>
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">{song.meta.emoji}</span>
-            <h1 className="font-bold text-xl md:text-2xl">{song.meta.titleJp}</h1>
-          </div>
-          <div className="w-20" />
-        </div>
-      </header>
-
       <div className="flex flex-1 flex-col p-4 pb-32">
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-4xl">
@@ -136,6 +126,7 @@ export default function SongPage() {
           <Keyboard
             highlightedPitch={playController?.getCurrentNote()?.pitch}
             onPress={handleKeyPress}
+            onRelease={handleKeyRelease}
           />
         </div>
       </div>
