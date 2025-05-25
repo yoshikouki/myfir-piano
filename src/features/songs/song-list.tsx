@@ -46,9 +46,6 @@ export function SongList() {
               <span className="text-2xl">{song.meta.emoji}</span>
               <div>
                 <div className="font-medium text-lg">{song.meta.titleJp}</div>
-                {song.meta.titleEn && (
-                  <div className="text-gray-600 text-sm">{song.meta.titleEn}</div>
-                )}
               </div>
             </div>
           </Link>
