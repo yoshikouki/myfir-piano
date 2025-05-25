@@ -25,7 +25,7 @@ export function UserMenu() {
         type="button"
         id="user-menu-button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary transition-colors hover:bg-secondary/80"
+        className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-gray-100"
         aria-label="ユーザーメニュー"
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -49,7 +49,7 @@ export function UserMenu() {
 
       {isOpen && (
         <div
-          className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5"
+          className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
