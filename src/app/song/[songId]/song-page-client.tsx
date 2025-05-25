@@ -2,10 +2,11 @@
 import { Keyboard } from "@/features/keyboard/components/keyboard";
 import type { Pitch } from "@/features/keyboard/pitches";
 import { PlayController } from "@/features/player/play-controller";
+import { CompletionOverlay } from "@/features/score/components/completion-overlay";
 import { ScrollScore } from "@/features/score/components/scroll-score";
 import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
 import type { Song } from "@/songs/song.schema";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Props = {
   song: Song;
@@ -40,12 +41,22 @@ export default function SongPageClient({ song }: Props) {
     playController.audioEngine.stopNote(pitch);
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     if (!playController) return;
     playController.reset();
     setCurrentIndex(0);
     setIsCompleted(false);
-  };
+  }, [playController]);
+
+  useEffect(() => {
+    const handleHeaderClick = () => {
+      handleReset();
+    };
+    window.addEventListener("song-title-click", handleHeaderClick);
+    return () => {
+      window.removeEventListener("song-title-click", handleHeaderClick);
+    };
+  }, [handleReset]);
 
   return (
     <div className="flex min-h-screen flex-col pt-16">
@@ -54,22 +65,6 @@ export default function SongPageClient({ song }: Props) {
           <div className="w-full max-w-4xl">
             <div className="space-y-8 text-center">
               <ScrollScore song={song} currentIndex={currentIndex} />
-              <div>
-                {isCompleted ? (
-                  <div className="space-y-4">
-                    <div className="font-bold text-primary text-xl md:text-2xl">
-                      🎉 かんせい！
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="rounded-lg bg-primary px-6 py-2 text-primary-foreground hover:bg-primary/90"
-                    >
-                      もう一度
-                    </button>
-                  </div>
-                ) : null}
-              </div>
             </div>
           </div>
         </div>
@@ -80,6 +75,8 @@ export default function SongPageClient({ song }: Props) {
         onPress={handleKeyPress}
         onRelease={handleKeyRelease}
       />
+
+      <CompletionOverlay isVisible={isCompleted} />
     </div>
   );
 }
