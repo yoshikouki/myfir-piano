@@ -1,5 +1,6 @@
 import type { Pitch } from "@/features/keyboard/pitches";
 import { pitchLabels } from "@/features/keyboard/pitches";
+import { cn } from "@/lib/utils";
 import type { Song } from "@/songs/song.schema";
 import { motion } from "motion/react";
 
@@ -16,12 +17,30 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
   const currentNoteIndex = currentIndex ?? -1;
   const visibleRange = 7;
   const centerPosition = 1;
+  const baseNoteWidth = 60;
+  const noteGap = 8;
 
   const startIndex = Math.max(0, currentNoteIndex - centerPosition);
   const endIndex = Math.min(song.notes.length, startIndex + visibleRange);
   const _visibleNotes = song.notes.slice(startIndex, endIndex);
 
-  const initialX = centerPosition * (60 + 8);
+  const calculateNoteWidth = (duration: number) => {
+    return baseNoteWidth * Math.max(1, duration);
+  };
+
+  const calculateNotePosition = (index: number) => {
+    let position = 0;
+    for (let i = 0; i < index; i++) {
+      position += calculateNoteWidth(song.notes[i].duration) + noteGap;
+    }
+    return position;
+  };
+
+  const isLongNote = ({ duration }: { duration: number }) => duration >= 2;
+
+  const highlightPosition = calculateNotePosition(centerPosition);
+  const currentNotePosition = calculateNotePosition(currentNoteIndex);
+  const initialX = highlightPosition;
 
   return (
     <div className="relative overflow-hidden">
@@ -29,9 +48,10 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
         <motion.div
           layoutId="highlight"
           data-testid="highlight"
-          className="absolute top-0 left-0 h-full w-[60px] rounded bg-red-500"
+          className="absolute top-0 left-0 h-full rounded bg-red-500"
           style={{
-            left: `${centerPosition * (60 + 8)}px`,
+            left: `${highlightPosition}px`,
+            width: `${calculateNoteWidth(song.notes[currentNoteIndex]?.duration ?? 1)}px`,
           }}
           transition={{
             type: "spring",
@@ -46,7 +66,7 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
           x: initialX,
         }}
         animate={{
-          x: -(currentNoteIndex * (60 + 8)) + initialX,
+          x: -currentNotePosition + initialX,
         }}
         transition={{
           type: "spring",
@@ -58,10 +78,14 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
         {song.notes.map((n, i) => (
           <div
             key={`${i}-${n.pitch}`}
-            className="relative inline-block min-w-[60px] text-center"
+            className={cn("relative inline-block", isLongNote(n) ? "text-left" : "text-center")}
+            style={{
+              minWidth: `${calculateNoteWidth(n.duration)}px`,
+              width: `${calculateNoteWidth(n.duration)}px`,
+            }}
           >
             <motion.span
-              className="relative inline-block px-2"
+              className={cn("relative inline-block pr-2", isLongNote(n) ? "pl-4" : "pl-2")}
               animate={{
                 scale: i === currentNoteIndex ? 1.2 : 1,
                 color: i === currentNoteIndex ? "#fde047" : "#000000",
