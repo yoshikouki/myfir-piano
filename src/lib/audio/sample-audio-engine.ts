@@ -11,13 +11,13 @@ export class SampleAudioEngine implements AudioEngine {
 
     this.synth = new Tone.PolySynth(Tone.Synth, {
       oscillator: {
-        type: "sine",
+        type: "triangle",
       },
       envelope: {
-        attack: 0.02,
-        decay: 0.1,
-        sustain: 0.9,
-        release: 0.3,
+        attack: 0.01,
+        decay: 0.8,
+        sustain: 0.3,
+        release: 2.5,
       },
     }).toDestination();
 
@@ -29,7 +29,7 @@ export class SampleAudioEngine implements AudioEngine {
     if (!this.synth || !this.loaded) return;
 
     const note = this.pitchToNote(pitch);
-    this.synth.triggerAttack(note, undefined, velocity * 0.8);
+    this.synth.triggerAttackRelease(note, "4n", undefined, velocity * 0.8);
   }
 
   playNoteWithDuration(pitch: Pitch, velocity: number, duration: number, bpm: number): void {
