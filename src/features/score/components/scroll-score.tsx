@@ -73,6 +73,8 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
                 "relative inline-block h-full rounded",
                 i === currentNoteIndex ? "bg-primary" : "",
               )}
+              role="note"
+              data-highlighted={i === currentNoteIndex}
               animate={{
                 scale: i === currentNoteIndex ? 1 : 1,
               }}

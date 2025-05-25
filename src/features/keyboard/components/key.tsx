@@ -74,6 +74,8 @@ export function Key({ pitch, highlighted = false, onPress, onRelease }: KeyProps
     <motion.button
       type="button"
       data-pitch={pitch}
+      aria-pressed={highlighted}
+      aria-label={`${pitchLabels[pitch]} ${pitch}`}
       className={cn(keyVariants({ keyType, highlighted }))}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}

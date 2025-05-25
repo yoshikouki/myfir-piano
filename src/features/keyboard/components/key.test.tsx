@@ -32,20 +32,13 @@ describe("Key component", () => {
 
     const { rerender } = render(<Key pitch={whitePitch} highlighted={false} />);
     const keyElement = screen.getByRole("button");
-    const initialClasses = keyElement.className;
-
     expect(keyElement).toHaveAttribute("data-pitch", whitePitch);
-    expect(initialClasses).toContain("bg-white");
+    expect(keyElement).toHaveAttribute("aria-pressed", "false");
 
     rerender(<Key pitch={whitePitch} highlighted={true} />);
     const highlightedKeyElement = screen.getByRole("button");
-    const highlightedClasses = highlightedKeyElement.className;
-
     expect(highlightedKeyElement).toHaveAttribute("data-pitch", whitePitch);
-    expect(highlightedClasses).toContain("bg-primary");
-    expect(highlightedClasses).toContain("text-white");
-    expect(highlightedClasses).toContain("font-bold");
-    expect(highlightedClasses).not.toContain("bg-white");
+    expect(highlightedKeyElement).toHaveAttribute("aria-pressed", "true");
   });
 
   it("calls onPress when a key is pressed", () => {

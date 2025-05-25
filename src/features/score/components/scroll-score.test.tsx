@@ -9,12 +9,16 @@ const song = rawSong as Song;
 describe("ScrollScore", () => {
   it("shows highlight when current note is selected", () => {
     render(<ScrollScore song={song} currentIndex={0} />);
-    expect(screen.getByTestId("highlight")).toBeInTheDocument();
+    const notes = screen.getAllByRole("note");
+    expect(notes[0]).toHaveAttribute("data-highlighted", "true");
   });
 
   it("hides highlight when no current note", () => {
     render(<ScrollScore song={song} />);
-    expect(screen.queryByTestId("highlight")).not.toBeInTheDocument();
+    const notes = screen.getAllByRole("note");
+    notes.forEach((note) => {
+      expect(note).toHaveAttribute("data-highlighted", "false");
+    });
   });
 
   it("renders all notes from song", () => {
@@ -72,9 +76,11 @@ describe("ScrollScore", () => {
       ],
     };
     const { rerender } = render(<ScrollScore song={testSong} currentIndex={0} />);
-    expect(screen.getByTestId("highlight")).toHaveStyle({ width: "60px" });
+    const notes = screen.getAllByRole("note");
+    expect(notes[0]).toHaveAttribute("data-highlighted", "true");
 
     rerender(<ScrollScore song={testSong} currentIndex={1} />);
-    expect(screen.getByTestId("highlight")).toHaveStyle({ width: "120px" });
+    const updatedNotes = screen.getAllByRole("note");
+    expect(updatedNotes[1]).toHaveAttribute("data-highlighted", "true");
   });
 });

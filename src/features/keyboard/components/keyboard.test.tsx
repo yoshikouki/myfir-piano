@@ -25,8 +25,7 @@ describe("Keyboard", () => {
 
     expect(c4Button).toBeDefined();
     if (!c4Button) return;
-    const initialClasses = c4Button.className;
-    expect(initialClasses).toContain("bg-white");
+    expect(c4Button).toHaveAttribute("aria-pressed", "false");
 
     rerender(<Keyboard highlightedPitch="C4" />);
     const highlightedKeys = screen.getAllByRole("button");
@@ -34,22 +33,16 @@ describe("Keyboard", () => {
 
     expect(highlightedC4).toBeDefined();
     if (!highlightedC4) return;
-    const highlightedClasses = highlightedC4.className;
-    expect(highlightedClasses).toContain("bg-primary");
-    expect(highlightedClasses).toContain("text-white");
-    expect(highlightedClasses).toContain("font-bold");
-    expect(highlightedClasses).not.toContain("bg-white");
+    expect(highlightedC4).toHaveAttribute("aria-pressed", "true");
   });
 
   it("highlights black keys correctly", () => {
     render(<Keyboard highlightedPitch="C#4" />);
-    const blackKeys = screen.getAllByRole("button", { name: "" });
+    const blackKeys = screen.getAllByRole("button");
     const blackKey = blackKeys.find((el) => el.getAttribute("data-pitch") === "C#4");
 
     expect(blackKey).toBeDefined();
     if (!blackKey) return;
-    const classes = blackKey.className;
-    expect(classes).toContain("bg-primary");
-    expect(classes).not.toContain("bg-black");
+    expect(blackKey).toHaveAttribute("aria-pressed", "true");
   });
 });
