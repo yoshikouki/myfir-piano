@@ -32,6 +32,14 @@ export class SampleAudioEngine implements AudioEngine {
     this.synth.triggerAttack(note, undefined, velocity * 0.8);
   }
 
+  playNoteWithDuration(pitch: Pitch, velocity: number, duration: number, bpm: number): void {
+    if (!this.synth || !this.loaded) return;
+
+    const note = this.pitchToNote(pitch);
+    const durationInSeconds = (60 / bpm) * duration;
+    this.synth.triggerAttackRelease(note, durationInSeconds, undefined, velocity * 0.8);
+  }
+
   stopNote(pitch: Pitch): void {
     if (!this.synth || !this.loaded) return;
 

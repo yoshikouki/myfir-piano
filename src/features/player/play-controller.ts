@@ -19,10 +19,12 @@ export class PlayController {
 
   press(pitch: Pitch) {
     if (!this.song) return;
-    this.engine.playNote(pitch, 1);
     const note = this.song.notes[this.index];
     if (note.pitch === pitch) {
+      this.engine.playNoteWithDuration(pitch, 1, note.duration, this.song.meta.bpm);
       this.index += 1;
+    } else {
+      this.engine.playNote(pitch, 0.5);
     }
   }
 
