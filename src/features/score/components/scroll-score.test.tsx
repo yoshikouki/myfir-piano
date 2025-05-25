@@ -16,9 +16,9 @@ describe("ScrollScore", () => {
   it("hides highlight when no current note", () => {
     render(<ScrollScore song={song} />);
     const notes = screen.getAllByRole("note");
-    notes.forEach((note) => {
+    for (const note of notes) {
       expect(note).toHaveAttribute("data-highlighted", "false");
-    });
+    }
   });
 
   it("renders all notes from song", () => {
