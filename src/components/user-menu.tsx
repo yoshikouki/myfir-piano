@@ -25,7 +25,7 @@ export function UserMenu() {
         type="button"
         id="user-menu-button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-gray-200"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary transition-colors hover:bg-secondary/80"
         aria-label="ユーザーメニュー"
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -61,7 +61,7 @@ export function UserMenu() {
                 handleInstallClick();
                 setIsOpen(false);
               }}
-              className="flex w-full items-center gap-3 px-4 py-2 text-gray-700 text-sm hover:bg-gray-100"
+              className="flex w-full items-center gap-3 px-4 py-2 text-foreground text-sm hover:bg-accent"
               role="menuitem"
             >
               <svg

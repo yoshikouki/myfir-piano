@@ -25,7 +25,7 @@ const keyVariants = cva(
       {
         keyType: "white",
         highlighted: true,
-        className: "bg-red-200",
+        className: "bg-primary/20",
       },
       {
         keyType: "black",
@@ -35,7 +35,7 @@ const keyVariants = cva(
       {
         keyType: "black",
         highlighted: true,
-        className: "bg-red-600",
+        className: "bg-primary",
       },
     ],
     defaultVariants: {
@@ -57,9 +57,9 @@ export function Key({ pitch, highlighted = false, onPress, onRelease }: KeyProps
 
   const getBackgroundColor = () => {
     if (keyType === "white") {
-      return highlighted ? "#fecaca" : "#ffffff";
+      return highlighted ? "oklch(var(--primary) / 0.2)" : "oklch(var(--background))";
     }
-    return highlighted ? "#dc2626" : "#000000";
+    return highlighted ? "oklch(var(--primary))" : "oklch(0 0 0)";
   };
 
   const handlePointerDown = (e: React.PointerEvent) => {

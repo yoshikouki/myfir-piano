@@ -48,7 +48,7 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
         <motion.div
           layoutId="highlight"
           data-testid="highlight"
-          className="absolute top-0 left-0 h-full rounded bg-red-500"
+          className="absolute top-0 left-0 h-full rounded bg-primary"
           style={{
             left: `${highlightPosition}px`,
             width: `${calculateNoteWidth(song.notes[currentNoteIndex]?.duration ?? 1)}px`,
@@ -88,7 +88,8 @@ export function ScrollScore({ song, currentIndex }: ScrollScoreProps) {
               className={cn("relative inline-block pr-2", isLongNote(n) ? "pl-4" : "pl-2")}
               animate={{
                 scale: i === currentNoteIndex ? 1.2 : 1,
-                color: i === currentNoteIndex ? "#fde047" : "#000000",
+                color:
+                  i === currentNoteIndex ? "oklch(var(--chart-4))" : "oklch(var(--foreground))",
               }}
               transition={{
                 duration: 0.2,

@@ -72,7 +72,7 @@ export default function SongPage() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="text-gray-500">きょくを よみこみちゅう...</div>
+        <div className="text-muted-foreground">きょくを よみこみちゅう...</div>
       </div>
     );
   }
@@ -80,10 +80,10 @@ export default function SongPage() {
   if (error || !song) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center">
-        <div className="mb-4 text-red-500">{error || "きょくが みつかりません"}</div>
+        <div className="mb-4 text-destructive">{error || "きょくが みつかりません"}</div>
         <Link
           href="/"
-          className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+          className="rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
         >
           きょくリストに もどる
         </Link>
@@ -97,19 +97,19 @@ export default function SongPage() {
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-4xl">
             <div className="space-y-8 text-center">
-              <div className="rounded-lg bg-gray-100 p-2 md:p-4">
+              <div className="rounded-lg bg-muted p-2 md:p-4">
                 <ScrollScore song={song} currentIndex={currentIndex} />
               </div>
               <div>
                 {isCompleted ? (
                   <div className="space-y-4">
-                    <div className="font-bold text-green-600 text-xl md:text-2xl">
+                    <div className="font-bold text-primary text-xl md:text-2xl">
                       🎉 かんせい！
                     </div>
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="rounded-lg bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
+                      className="rounded-lg bg-primary px-6 py-2 text-primary-foreground hover:bg-primary/90"
                     >
                       もう一度
                     </button>
@@ -121,7 +121,7 @@ export default function SongPage() {
         </div>
       </div>
 
-      <div className="fixed right-0 bottom-0 left-0 h-1/3 min-h-40 border-gray-200 border-t bg-white shadow-lg md:h-1/3">
+      <div className="fixed right-0 bottom-0 left-0 h-1/3 min-h-40 border-border border-t bg-background shadow-lg md:h-1/3">
         <div className="flex h-full justify-center overflow-x-auto">
           <Keyboard
             highlightedPitch={playController?.getCurrentNote()?.pitch}
