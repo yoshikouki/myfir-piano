@@ -4,16 +4,23 @@ import { Key } from "./key";
 export type KeyboardProps = {
   highlightedPitch?: Pitch;
   onPress?: (pitch: Pitch) => void;
+  onRelease?: (pitch: Pitch) => void;
 };
 
-export function Keyboard({ highlightedPitch, onPress }: KeyboardProps) {
+export function Keyboard({ highlightedPitch, onPress, onRelease }: KeyboardProps) {
   const whiteKeys = PITCHES.filter((p) => !p.includes("#"));
   const blackKeys = PITCHES.filter((p) => p.includes("#"));
 
   return (
     <div className="relative flex h-full w-full">
       {whiteKeys.map((p) => (
-        <Key key={p} pitch={p} highlighted={p === highlightedPitch} onPress={onPress} />
+        <Key
+          key={p}
+          pitch={p}
+          highlighted={p === highlightedPitch}
+          onPress={onPress}
+          onRelease={onRelease}
+        />
       ))}
       {blackKeys.map((p, _index) => {
         const whiteKeyIndex = whiteKeys.findIndex((wp) => {
@@ -41,7 +48,12 @@ export function Keyboard({ highlightedPitch, onPress }: KeyboardProps) {
               width: `${(0.6 / whiteKeys.length) * 100}%`,
             }}
           >
-            <Key pitch={p} highlighted={p === highlightedPitch} onPress={onPress} />
+            <Key
+              pitch={p}
+              highlighted={p === highlightedPitch}
+              onPress={onPress}
+              onRelease={onRelease}
+            />
           </div>
         );
       })}

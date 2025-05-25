@@ -3,21 +3,21 @@ import * as Tone from "tone";
 import type { AudioEngine } from "./audio-engine";
 
 export class SampleAudioEngine implements AudioEngine {
-  private synth: Tone.Synth | null = null;
+  private synth: Tone.PolySynth | null = null;
   private loaded = false;
 
   async load(): Promise<void> {
     if (this.loaded) return;
 
-    this.synth = new Tone.Synth({
+    this.synth = new Tone.PolySynth(Tone.Synth, {
       oscillator: {
         type: "sine",
       },
       envelope: {
-        attack: 0.05,
-        decay: 0.3,
-        sustain: 0.2,
-        release: 0.8,
+        attack: 0.02,
+        decay: 0.1,
+        sustain: 0.9,
+        release: 0.3,
       },
     }).toDestination();
 
@@ -29,7 +29,14 @@ export class SampleAudioEngine implements AudioEngine {
     if (!this.synth || !this.loaded) return;
 
     const note = this.pitchToNote(pitch);
-    this.synth.triggerAttackRelease(note, "8n", undefined, velocity * 0.8);
+    this.synth.triggerAttack(note, undefined, velocity * 0.8);
+  }
+
+  stopNote(pitch: Pitch): void {
+    if (!this.synth || !this.loaded) return;
+
+    const note = this.pitchToNote(pitch);
+    this.synth.triggerRelease(note);
   }
 
   private pitchToNote(pitch: Pitch): string {

@@ -49,9 +49,10 @@ export type KeyProps = {
   pitch: Pitch;
   highlighted?: boolean;
   onPress?: (pitch: Pitch) => void;
+  onRelease?: (pitch: Pitch) => void;
 } & VariantProps<typeof keyVariants>;
 
-export function Key({ pitch, highlighted = false, onPress }: KeyProps) {
+export function Key({ pitch, highlighted = false, onPress, onRelease }: KeyProps) {
   const keyType = isBlackKey(pitch) ? "black" : "white";
 
   const getBackgroundColor = () => {
@@ -61,12 +62,30 @@ export function Key({ pitch, highlighted = false, onPress }: KeyProps) {
     return highlighted ? "#dc2626" : "#000000";
   };
 
+  const handlePointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
+    onPress?.(pitch);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    e.preventDefault();
+    onRelease?.(pitch);
+  };
+
+  const handlePointerLeave = (e: React.PointerEvent) => {
+    e.preventDefault();
+    onRelease?.(pitch);
+  };
+
   return (
     <motion.button
       type="button"
       data-pitch={pitch}
       className={cn(keyVariants({ keyType, highlighted: false }))}
-      onPointerDown={() => onPress?.(pitch)}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerLeave}
+      onPointerCancel={handlePointerUp}
       animate={{
         backgroundColor: getBackgroundColor(),
       }}

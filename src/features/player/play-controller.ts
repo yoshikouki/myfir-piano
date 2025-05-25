@@ -8,6 +8,10 @@ export class PlayController {
   song: Song | undefined;
   index = 0;
 
+  get audioEngine(): AudioEngine {
+    return this.engine;
+  }
+
   async load(song: Song) {
     this.song = song;
     await this.engine.load();
