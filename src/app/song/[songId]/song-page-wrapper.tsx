@@ -15,9 +15,11 @@ type Props = {
 
 export function SongPageWrapper({ song }: Props) {
   const [resetKey, setResetKey] = useState(0);
+  const [demoPlayingIndex, setDemoPlayingIndex] = useState(-1);
 
   const handleReset = () => {
     setResetKey((prev) => prev + 1);
+    setDemoPlayingIndex(-1);
   };
 
   return (
@@ -25,14 +27,14 @@ export function SongPageWrapper({ song }: Props) {
       <HeaderContainer>
         <SongHeader emoji={song.meta.emoji} title={song.meta.titleJp}>
           <div className="flex items-center gap-2">
-            <PlayDemoButton song={song} />
+            <PlayDemoButton song={song} onIndexChange={setDemoPlayingIndex} />
             <ResetButton onReset={handleReset} />
             <UserMenu />
           </div>
         </SongHeader>
       </HeaderContainer>
       <div key={resetKey}>
-        <SongPageClient song={song} />
+        <SongPageClient song={song} demoPlayingIndex={demoPlayingIndex} />
       </div>
     </>
   );

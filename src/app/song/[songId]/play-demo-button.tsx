@@ -8,9 +8,10 @@ import { useCallback, useEffect, useState } from "react";
 
 type PlayDemoButtonProps = {
   song: Song;
+  onIndexChange?: (index: number) => void;
 };
 
-export function PlayDemoButton({ song }: PlayDemoButtonProps) {
+export function PlayDemoButton({ song, onIndexChange }: PlayDemoButtonProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playController, setPlayController] = useState<PlayController | null>(null);
   const [timeoutIds, setTimeoutIds] = useState<number[]>([]);
@@ -36,7 +37,8 @@ export function PlayDemoButton({ song }: PlayDemoButtonProps) {
     }
     setTimeoutIds([]);
     setIsPlaying(false);
-  }, [timeoutIds]);
+    onIndexChange?.(-1);
+  }, [timeoutIds, onIndexChange]);
 
   const handlePlay = useCallback(async () => {
     if (!playController) return;
@@ -52,8 +54,9 @@ export function PlayDemoButton({ song }: PlayDemoButtonProps) {
     const newTimeoutIds: number[] = [];
     let currentTime = 0;
 
-    for (const note of song.notes) {
+    song.notes.forEach((note, index) => {
       const timeoutId = window.setTimeout(() => {
+        onIndexChange?.(index);
         playController.audioEngine.playNoteWithDuration(
           note.pitch,
           1,
@@ -64,16 +67,17 @@ export function PlayDemoButton({ song }: PlayDemoButtonProps) {
 
       newTimeoutIds.push(timeoutId);
       currentTime += (60 / song.meta.bpm) * note.duration * 1000;
-    }
+    });
 
     const finalTimeoutId = window.setTimeout(() => {
       setIsPlaying(false);
       setTimeoutIds([]);
+      onIndexChange?.(-1);
     }, currentTime);
 
     newTimeoutIds.push(finalTimeoutId);
     setTimeoutIds(newTimeoutIds);
-  }, [playController, song, isPlaying, stopPlayback]);
+  }, [playController, song, isPlaying, stopPlayback, onIndexChange]);
 
   return (
     <button

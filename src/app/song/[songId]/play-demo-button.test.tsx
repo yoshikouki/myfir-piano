@@ -46,4 +46,12 @@ describe("PlayDemoButton", () => {
     const playIcon = screen.getByRole("button").querySelector("svg");
     expect(playIcon).toHaveClass("lucide-play");
   });
+
+  it("should accept onIndexChange prop", () => {
+    const onIndexChange = vi.fn();
+    render(<PlayDemoButton song={mockSong} onIndexChange={onIndexChange} />);
+
+    const button = screen.getByRole("button");
+    expect(button).toBeInTheDocument();
+  });
 });

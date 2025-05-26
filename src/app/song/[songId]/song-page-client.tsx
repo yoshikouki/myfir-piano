@@ -10,9 +10,10 @@ import { useEffect, useState } from "react";
 
 type Props = {
   song: Song;
+  demoPlayingIndex?: number;
 };
 
-export default function SongPageClient({ song }: Props) {
+export default function SongPageClient({ song, demoPlayingIndex = -1 }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playController, setPlayController] = useState<PlayController | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -47,7 +48,10 @@ export default function SongPageClient({ song }: Props) {
         <div className="flex flex-1 flex-col items-center justify-center">
           <div className="w-full max-w-4xl">
             <div className="space-y-8 text-center">
-              <ScrollScore song={song} currentIndex={currentIndex} />
+              <ScrollScore
+                song={song}
+                currentIndex={demoPlayingIndex >= 0 ? demoPlayingIndex : currentIndex}
+              />
             </div>
           </div>
         </div>
