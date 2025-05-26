@@ -4,6 +4,7 @@ import { HeaderContainer } from "@/components/header-container";
 import { UserMenu } from "@/components/user-menu";
 import type { Song } from "@/songs/song.schema";
 import { useState } from "react";
+import { PlayDemoButton } from "./play-demo-button";
 import { ResetButton } from "./reset-button";
 import { SongHeader } from "./song-header";
 import SongPageClient from "./song-page-client";
@@ -24,6 +25,7 @@ export function SongPageWrapper({ song }: Props) {
       <HeaderContainer>
         <SongHeader emoji={song.meta.emoji} title={song.meta.titleJp}>
           <div className="flex items-center gap-2">
+            <PlayDemoButton song={song} />
             <ResetButton onReset={handleReset} />
             <UserMenu />
           </div>
