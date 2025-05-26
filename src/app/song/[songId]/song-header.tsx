@@ -9,7 +9,7 @@ type SongHeaderProps = {
 
 export function SongHeader({ emoji, title, children }: SongHeaderProps) {
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex w-full items-center justify-between gap-4">
       <div className="flex items-center gap-4">
         <Link
           href="/"
