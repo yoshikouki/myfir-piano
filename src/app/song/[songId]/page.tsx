@@ -1,9 +1,7 @@
-import { HeaderContainer } from "@/components/header-container";
 import { loadSong } from "@/features/songs/songs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SongHeader } from "./song-header";
-import SongPageClient from "./song-page-client";
+import { SongPageWrapper } from "./song-page-wrapper";
 
 type Props = {
   params: Promise<{ songId: string }>;
@@ -32,12 +30,5 @@ export default async function SongPage({ params }: Props) {
     notFound();
   }
 
-  return (
-    <>
-      <HeaderContainer>
-        <SongHeader emoji={song.meta.emoji} title={song.meta.titleJp} />
-      </HeaderContainer>
-      <SongPageClient song={song} />
-    </>
-  );
+  return <SongPageWrapper song={song} />;
 }

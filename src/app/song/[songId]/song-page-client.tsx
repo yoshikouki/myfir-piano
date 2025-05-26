@@ -6,7 +6,7 @@ import { CompletionOverlay } from "@/features/score/components/completion-overla
 import { ScrollScore } from "@/features/score/components/scroll-score";
 import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
 import type { Song } from "@/songs/song.schema";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   song: Song;
@@ -40,23 +40,6 @@ export default function SongPageClient({ song }: Props) {
     if (!playController) return;
     playController.audioEngine.stopNote(pitch);
   };
-
-  const handleReset = useCallback(() => {
-    if (!playController) return;
-    playController.reset();
-    setCurrentIndex(0);
-    setIsCompleted(false);
-  }, [playController]);
-
-  useEffect(() => {
-    const handleHeaderClick = () => {
-      handleReset();
-    };
-    window.addEventListener("song-title-click", handleHeaderClick);
-    return () => {
-      window.removeEventListener("song-title-click", handleHeaderClick);
-    };
-  }, [handleReset]);
 
   return (
     <div className="flex min-h-screen flex-col pt-16">
