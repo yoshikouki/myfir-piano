@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 interface CompletionOverlayProps {
@@ -20,34 +20,49 @@ export function CompletionOverlay({ isVisible }: CompletionOverlayProps) {
     }
   }, [isVisible]);
 
-  if (!shouldRender) return null;
-
   return (
-    <div
-      className={cn(
-        "fixed inset-0 z-50 flex items-center justify-center",
-        "bg-gradient-to-br from-yellow-300/90 via-orange-400/90 to-pink-500/90",
-        "fade-in animate-in duration-300",
+    <AnimatePresence>
+      {shouldRender && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-yellow-300/90 via-orange-400/90 to-pink-500/90"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          role="alert"
+          aria-live="assertive"
+        >
+          <div className="text-center">
+            <motion.h1
+              className="mb-4 font-bold text-8xl text-white"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              かんせい！
+            </motion.h1>
+            <div className="flex justify-center gap-2">
+              {[0.0, 0.1, 0.2, 0.3, 0.4].map((delay, index) => (
+                <motion.div
+                  key={`bounce-dot-${index}`}
+                  className="h-12 w-12 rounded-full bg-white/80"
+                  initial={{ y: 0 }}
+                  animate={{
+                    y: [0, -20, 0],
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    repeat: Number.POSITIVE_INFINITY,
+                    delay,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
       )}
-      role="alert"
-      aria-live="assertive"
-    >
-      <div className="text-center">
-        <h1 className="zoom-in-110 mb-4 animate-in font-bold text-8xl text-white duration-500">
-          かんせい！
-        </h1>
-        <div className="flex justify-center gap-2">
-          {[0.0, 0.1, 0.2, 0.3, 0.4].map((delay) => (
-            <div
-              key={`bounce-dot-${delay}`}
-              className={cn("h-12 w-12 rounded-full bg-white/80", "animate-bounce")}
-              style={{
-                animationDelay: `${delay}s`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+    </AnimatePresence>
   );
 }
