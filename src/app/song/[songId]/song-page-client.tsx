@@ -7,7 +7,7 @@ import { ScrollScore } from "@/features/score/components/scroll-score";
 import { useAudioEngine } from "@/lib/audio/audio-engine-context";
 import { createAudioEngine } from "@/lib/audio/audio-engine-factory";
 import type { Song } from "@/songs/song.schema";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Props = {
   song: Song;
@@ -18,6 +18,7 @@ export default function SongPageClient({ song, demoPlayingIndex = -1 }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playController, setPlayController] = useState<PlayController | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isAudioInitialized, setIsAudioInitialized] = useState(false);
   const { engineType } = useAudioEngine();
 
   useEffect(() => {
@@ -29,7 +30,12 @@ export default function SongPageClient({ song, demoPlayingIndex = -1 }: Props) {
 
   const handleKeyPress = async (pitch: Pitch) => {
     if (!playController) return;
-    await playController.ensureAudioEngineLoaded();
+
+    if (!isAudioInitialized) {
+      await playController.ensureAudioEngineLoaded();
+      setIsAudioInitialized(true);
+    }
+
     const oldIndex = playController.index;
     playController.press(pitch);
     const newIndex = playController.index;
@@ -43,6 +49,26 @@ export default function SongPageClient({ song, demoPlayingIndex = -1 }: Props) {
     if (!playController) return;
     playController.audioEngine.stopNote(pitch);
   };
+
+  const handlePageClick = useCallback(async () => {
+    if (!playController || isAudioInitialized) return;
+    await playController.ensureAudioEngineLoaded();
+    setIsAudioInitialized(true);
+  }, [playController, isAudioInitialized]);
+
+  useEffect(() => {
+    const handleClick = () => {
+      handlePageClick();
+    };
+
+    window.addEventListener("click", handleClick);
+    window.addEventListener("touchstart", handleClick);
+
+    return () => {
+      window.removeEventListener("click", handleClick);
+      window.removeEventListener("touchstart", handleClick);
+    };
+  }, [handlePageClick]);
 
   return (
     <>
