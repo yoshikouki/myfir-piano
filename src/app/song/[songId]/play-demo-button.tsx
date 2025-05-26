@@ -2,6 +2,7 @@
 
 import { PlayController } from "@/features/player/play-controller";
 import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
+import { cn } from "@/lib/utils";
 import type { Song } from "@/songs/song.schema";
 import { Play, Square } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
@@ -83,10 +84,13 @@ export function PlayDemoButton({ song, onIndexChange }: PlayDemoButtonProps) {
     <button
       type="button"
       onClick={handlePlay}
-      className="flex items-center gap-2 rounded-full bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
+      className={cn(
+        "flex items-center gap-2 rounded-full border border-primary bg-background px-4 py-2 font-medium text-primary transition-colors hover:bg-primary/10",
+        isPlaying && "bg-primary/20 font-bold",
+      )}
       aria-label={isPlaying ? "おてほんを停止" : "おてほんを再生"}
     >
-      {isPlaying ? <Square className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+      {isPlaying ? <Square className="h-4 w-4 stroke-3" /> : <Play className="h-4 w-4" />}
       <span>おてほん</span>
     </button>
   );

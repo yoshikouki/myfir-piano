@@ -33,9 +33,7 @@ export function SongPageWrapper({ song }: Props) {
           </div>
         </SongHeader>
       </HeaderContainer>
-      <div key={resetKey}>
-        <SongPageClient song={song} demoPlayingIndex={demoPlayingIndex} />
-      </div>
+      <SongPageClient song={song} demoPlayingIndex={demoPlayingIndex} key={resetKey} />
     </>
   );
 }

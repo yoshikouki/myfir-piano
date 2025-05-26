@@ -26,53 +26,49 @@ export function ScrollScore({ song, currentIndex = -1 }: ScrollScoreProps) {
 
   return (
     <div className="relative w-full overflow-hidden">
-      <div className="pointer-events-none absolute top-0 bottom-0 left-[20%] z-10 w-px bg-primary/20" />
+      <div
+        className="flex gap-2 whitespace-nowrap text-2xl transition-transform duration-500 ease-out"
+        style={{
+          transform: `translateX(${translateX})`,
+          paddingLeft: "20%",
+          paddingRight: "80%",
+        }}
+      >
+        {song.notes.map((note, index) => {
+          const noteWidth = BASE_NOTE_WIDTH * Math.max(1, note.duration);
+          const isLongNote = note.duration >= 2;
+          const isHighlighted = index === currentIndex;
 
-      <div className="overflow-x-hidden">
-        <div
-          className="flex gap-2 whitespace-nowrap text-2xl transition-transform duration-500 ease-out"
-          style={{
-            transform: `translateX(${translateX})`,
-            paddingLeft: "20%",
-            paddingRight: "80%",
-          }}
-        >
-          {song.notes.map((note, index) => {
-            const noteWidth = BASE_NOTE_WIDTH * Math.max(1, note.duration);
-            const isLongNote = note.duration >= 2;
-            const isHighlighted = index === currentIndex;
-
-            return (
-              <div
-                key={`${index}-${note.pitch}`}
+          return (
+            <div
+              key={`${index}-${note.pitch}`}
+              className={cn(
+                "relative inline-block h-full rounded transition-colors duration-200",
+                isLongNote ? "text-left" : "text-center",
+                isHighlighted ? "bg-primary" : "bg-muted",
+              )}
+              style={{
+                width: `${noteWidth}px`,
+                minWidth: `${noteWidth}px`,
+              }}
+              role="note"
+              data-highlighted={isHighlighted}
+            >
+              <span
                 className={cn(
-                  "relative inline-block h-full rounded transition-colors duration-200",
-                  isLongNote ? "text-left" : "text-center",
-                  isHighlighted ? "bg-primary" : "bg-muted",
+                  "relative inline-block py-1 pr-2 transition-transform duration-200",
+                  isLongNote ? "pl-4" : "pl-2",
+                  isHighlighted ? "scale-125 text-primary-foreground" : "text-foreground",
                 )}
                 style={{
-                  width: `${noteWidth}px`,
-                  minWidth: `${noteWidth}px`,
+                  transformOrigin: "center",
                 }}
-                role="note"
-                data-highlighted={isHighlighted}
               >
-                <span
-                  className={cn(
-                    "relative inline-block pr-2 transition-transform duration-200",
-                    isLongNote ? "pl-4" : "pl-2",
-                    isHighlighted ? "scale-125 text-primary-foreground" : "text-foreground",
-                  )}
-                  style={{
-                    transformOrigin: "center",
-                  }}
-                >
-                  {pitchLabels[note.pitch as Pitch]}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+                {pitchLabels[note.pitch as Pitch]}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -43,18 +43,12 @@ export default function SongPageClient({ song, demoPlayingIndex = -1 }: Props) {
   };
 
   return (
-    <div className="flex min-h-screen flex-col pt-16">
-      <div className="flex flex-1 flex-col p-4 pb-32">
-        <div className="flex flex-1 flex-col items-center justify-center">
-          <div className="w-full max-w-4xl">
-            <div className="space-y-8 text-center">
-              <ScrollScore
-                song={song}
-                currentIndex={demoPlayingIndex >= 0 ? demoPlayingIndex : currentIndex}
-              />
-            </div>
-          </div>
-        </div>
+    <>
+      <div className="flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-4 py-10">
+        <ScrollScore
+          song={song}
+          currentIndex={demoPlayingIndex >= 0 ? demoPlayingIndex : currentIndex}
+        />
       </div>
 
       <Keyboard
@@ -64,6 +58,6 @@ export default function SongPageClient({ song, demoPlayingIndex = -1 }: Props) {
       />
 
       <CompletionOverlay isVisible={isCompleted} />
-    </div>
+    </>
   );
 }
