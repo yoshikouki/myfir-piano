@@ -1,13 +1,17 @@
 import type { Pitch } from "@/features/keyboard/pitches";
-import * as Tone from "tone";
+import type * as ToneTypes from "tone";
 import type { AudioEngine } from "./audio-engine";
 
 export class SampleAudioEngine implements AudioEngine {
-  private synth: Tone.PolySynth | null = null;
+  private synth: ToneTypes.PolySynth | null = null;
   private loaded = false;
+  private Tone: typeof ToneTypes | null = null;
 
   async load(): Promise<void> {
     if (this.loaded) return;
+
+    const Tone = await import("tone");
+    this.Tone = Tone;
 
     this.synth = new Tone.PolySynth(Tone.Synth, {
       oscillator: {
