@@ -37,6 +37,21 @@ export class SampleAudioEngine implements AudioEngine {
 
     const note = this.pitchToNote(pitch);
     const durationInSeconds = (60 / bpm) * duration;
+
+    if (duration > 1) {
+      const sustainLevel = Math.max(0.05, 0.3 - (duration - 1) * 0.05);
+      const decayTime = Math.min(1.5, 0.8 + (duration - 1) * 0.2);
+
+      this.synth.set({
+        envelope: {
+          attack: 0.01,
+          decay: decayTime,
+          sustain: sustainLevel,
+          release: 2.5,
+        },
+      });
+    }
+
     this.synth.triggerAttackRelease(note, durationInSeconds, undefined, velocity * 0.8);
   }
 

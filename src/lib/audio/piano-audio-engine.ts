@@ -73,7 +73,7 @@ export class PianoAudioEngine implements AudioEngine {
     const durationInSeconds = (60 / bpm) * duration;
     const adjustedVelocity = this.getVelocityForPitch(pitch, velocity);
 
-    const envelope = this.getEnvelopeForPitch(pitch);
+    const envelope = this.getEnvelopeForPitchAndDuration(pitch, duration);
     this.synth.set({ envelope });
 
     this.synth.triggerAttackRelease(note, durationInSeconds, undefined, adjustedVelocity);
@@ -100,6 +100,33 @@ export class PianoAudioEngine implements AudioEngine {
       attack: 0.001 + relativePosition * 0.002,
       decay: 0.3 - relativePosition * 0.1,
       sustain: 0.1 - relativePosition * 0.05,
+      release: 1.2 + relativePosition * 0.8,
+    };
+  }
+
+  private getEnvelopeForPitchAndDuration(
+    pitch: Pitch,
+    duration: number,
+  ): Partial<Tone.EnvelopeOptions> {
+    const noteNumber = this.getNoteNumber(pitch);
+    const relativePosition = (noteNumber - 48) / 36;
+
+    if (duration <= 1) {
+      return {
+        attack: 0.001 + relativePosition * 0.002,
+        decay: 0.3 - relativePosition * 0.1,
+        sustain: 0.1 - relativePosition * 0.05,
+        release: 1.2 + relativePosition * 0.8,
+      };
+    }
+
+    const sustainLevel = Math.max(0.02, 0.1 - (duration - 1) * 0.02);
+    const decayTime = Math.min(2.0, 0.3 + (duration - 1) * 0.3);
+
+    return {
+      attack: 0.001 + relativePosition * 0.002,
+      decay: decayTime,
+      sustain: sustainLevel,
       release: 1.2 + relativePosition * 0.8,
     };
   }
