@@ -1,7 +1,8 @@
 "use client";
 
 import { PlayController } from "@/features/player/play-controller";
-import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
+import { useAudioEngine } from "@/lib/audio/audio-engine-context";
+import { createAudioEngine } from "@/lib/audio/audio-engine-factory";
 import { cn } from "@/lib/utils";
 import type { Song } from "@/songs/song.schema";
 import { Play, Square } from "lucide-react";
@@ -16,13 +17,14 @@ export function PlayDemoButton({ song, onIndexChange }: PlayDemoButtonProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playController, setPlayController] = useState<PlayController | null>(null);
   const [timeoutIds, setTimeoutIds] = useState<number[]>([]);
+  const { engineType } = useAudioEngine();
 
   useEffect(() => {
-    const engine = new SampleAudioEngine();
+    const engine = createAudioEngine(engineType);
     const controller = new PlayController(engine);
     controller.load(song);
     setPlayController(controller);
-  }, [song]);
+  }, [song, engineType]);
 
   useEffect(() => {
     return () => {

@@ -1,13 +1,15 @@
 "use client";
 
 import { useInstallPrompt } from "@/components/use-install-prompt";
-import { DownloadIcon } from "lucide-react";
+import { useAudioEngine } from "@/lib/audio/audio-engine-context";
+import { DownloadIcon, Music } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { isInstallable, handleInstallClick } = useInstallPrompt();
+  const { engineType, setEngineType } = useAudioEngine();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -55,6 +57,19 @@ export function UserMenu() {
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
         >
+          <button
+            type="button"
+            onClick={() => {
+              setEngineType(engineType === "piano" ? "sample" : "piano");
+              setIsOpen(false);
+            }}
+            className="flex w-full items-center gap-3 px-4 py-2 text-foreground text-sm hover:bg-accent"
+            role="menuitem"
+          >
+            <Music size={16} />
+            音源: {engineType === "piano" ? "ピアノ" : "シンプル"}
+          </button>
+
           {isInstallable && (
             <button
               type="button"

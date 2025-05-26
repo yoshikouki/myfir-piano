@@ -4,7 +4,8 @@ import type { Pitch } from "@/features/keyboard/pitches";
 import { PlayController } from "@/features/player/play-controller";
 import { CompletionOverlay } from "@/features/score/components/completion-overlay";
 import { ScrollScore } from "@/features/score/components/scroll-score";
-import { SampleAudioEngine } from "@/lib/audio/sample-audio-engine";
+import { useAudioEngine } from "@/lib/audio/audio-engine-context";
+import { createAudioEngine } from "@/lib/audio/audio-engine-factory";
 import type { Song } from "@/songs/song.schema";
 import { useEffect, useState } from "react";
 
@@ -17,13 +18,14 @@ export default function SongPageClient({ song, demoPlayingIndex = -1 }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playController, setPlayController] = useState<PlayController | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
+  const { engineType } = useAudioEngine();
 
   useEffect(() => {
-    const engine = new SampleAudioEngine();
+    const engine = createAudioEngine(engineType);
     const controller = new PlayController(engine);
     controller.load(song);
     setPlayController(controller);
-  }, [song]);
+  }, [song, engineType]);
 
   const handleKeyPress = async (pitch: Pitch) => {
     if (!playController) return;
