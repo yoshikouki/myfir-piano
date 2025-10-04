@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { AudioEngineProvider } from "@/lib/audio/audio-engine-context";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { UserMenu } from "./user-menu";
 
@@ -17,12 +18,20 @@ describe("UserMenu", () => {
   });
 
   it("メニューボタンが表示される", () => {
-    render(<UserMenu />);
+    render(
+      <AudioEngineProvider>
+        <UserMenu />
+      </AudioEngineProvider>
+    );
     expect(screen.getByLabelText("ユーザーメニュー")).toBeInTheDocument();
   });
 
   it("クリックでメニューが開く", () => {
-    render(<UserMenu />);
+    render(
+      <AudioEngineProvider>
+        <UserMenu />
+      </AudioEngineProvider>
+    );
     const button = screen.getByLabelText("ユーザーメニュー");
 
     fireEvent.click(button);
@@ -31,7 +40,11 @@ describe("UserMenu", () => {
   });
 
   it("メニュー外クリックでメニューが閉じる", async () => {
-    render(<UserMenu />);
+    render(
+      <AudioEngineProvider>
+        <UserMenu />
+      </AudioEngineProvider>
+    );
     const button = screen.getByLabelText("ユーザーメニュー");
 
     fireEvent.click(button);
@@ -50,7 +63,11 @@ describe("UserMenu", () => {
       handleInstallClick: vi.fn(),
     });
 
-    render(<UserMenu />);
+    render(
+      <AudioEngineProvider>
+        <UserMenu />
+      </AudioEngineProvider>
+    );
     const button = screen.getByLabelText("ユーザーメニュー");
 
     fireEvent.click(button);
@@ -65,7 +82,11 @@ describe("UserMenu", () => {
       handleInstallClick,
     });
 
-    render(<UserMenu />);
+    render(
+      <AudioEngineProvider>
+        <UserMenu />
+      </AudioEngineProvider>
+    );
     const button = screen.getByLabelText("ユーザーメニュー");
 
     fireEvent.click(button);
@@ -80,7 +101,11 @@ describe("UserMenu", () => {
       handleInstallClick: vi.fn(),
     });
 
-    render(<UserMenu />);
+    render(
+      <AudioEngineProvider>
+        <UserMenu />
+      </AudioEngineProvider>
+    );
     const button = screen.getByLabelText("ユーザーメニュー");
 
     fireEvent.click(button);
