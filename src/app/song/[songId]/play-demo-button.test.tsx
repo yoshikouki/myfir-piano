@@ -1,5 +1,6 @@
 import type { Song } from "@/songs/song.schema";
 import { render, screen } from "@testing-library/react";
+import { AudioEngineProvider } from "@/lib/audio/audio-engine-context";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PlayDemoButton } from "./play-demo-button";
 
@@ -33,7 +34,11 @@ describe("PlayDemoButton", () => {
   });
 
   it("should render with initial state", () => {
-    render(<PlayDemoButton song={mockSong} />);
+    render(
+      <AudioEngineProvider>
+        <PlayDemoButton song={mockSong} />
+      </AudioEngineProvider>
+    );
 
     const button = screen.getByRole("button", { name: "おてほんを再生" });
     expect(button).toBeInTheDocument();
@@ -41,7 +46,11 @@ describe("PlayDemoButton", () => {
   });
 
   it("should display play button initially", () => {
-    render(<PlayDemoButton song={mockSong} />);
+    render(
+      <AudioEngineProvider>
+        <PlayDemoButton song={mockSong} />
+      </AudioEngineProvider>
+    );
 
     const playIcon = screen.getByRole("button").querySelector("svg");
     expect(playIcon).toHaveClass("lucide-play");
@@ -49,7 +58,11 @@ describe("PlayDemoButton", () => {
 
   it("should accept onIndexChange prop", () => {
     const onIndexChange = vi.fn();
-    render(<PlayDemoButton song={mockSong} onIndexChange={onIndexChange} />);
+    render(
+      <AudioEngineProvider>
+        <PlayDemoButton song={mockSong} onIndexChange={onIndexChange} />
+      </AudioEngineProvider>
+    );
 
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
